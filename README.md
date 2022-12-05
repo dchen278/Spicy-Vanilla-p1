@@ -1,8 +1,8 @@
 #
 SoftDev  
-P01 -- 
-started: 
-completed: 
+P01 --  
+started:  
+completed:  
 
 ## Roster and Roles:
   
