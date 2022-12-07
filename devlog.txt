@@ -22,7 +22,6 @@ pd 7
 jeremyK -- 2022-12-02 12:55
 - Created Devlog
 
-==============================================================
 davidC - 2022-12-07 03:32
 - Revised design doc to include more details and feedback from devos
 - Feedback/questions from Dogtree Erase Lemons
@@ -32,3 +31,5 @@ davidC - 2022-12-07 03:32
     - How is order status being tracked?
     - Good API synergy (maps and ip)
 - TODO - write up api cards for bb, radar, and mailchimp
+
+==============================================================
