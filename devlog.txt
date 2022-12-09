@@ -52,3 +52,10 @@ matthewY -- 2022-12-09 04:50
 
 all -- 2022-12-09 13:02
 - Updated Design Doc with a Prioritized TODO List
+
+==============================================================
+
+jeremyK -- 2022-12-09 13:14
+
+- Added api_key files
+- Added read key command to __init__.py
