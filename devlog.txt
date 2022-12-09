@@ -23,7 +23,7 @@ jeremyK -- 2022-12-02 12:55
 - Created Devlog
 ==============================================================
 
-davidC - 2022-12-07 03:32
+davidC -- 2022-12-07 03:32
 - Revised design doc to include more details and feedback from devos
 - Feedback/questions from Dogtree Erase Lemons
     - How are we getting cart items from the database?
@@ -35,15 +35,27 @@ davidC - 2022-12-07 03:32
 
 ==============================================================
 
-all - 2022-12-08 12:30
+all -- 2022-12-08 12:30
 - Worked on API cards for bestbuy, radar, and mailchimp
 - Worked on design doc
 - Worked on mock page for landing page
 
 ==============================================================
 
-matthewY -- 2022-12-02 04:50
+matthewY -- 2022-12-09 04:50
 - Added a login screen with basic safety features
 - Added a safety check to prevent access to main page without logging in
 - Added requirements.txt
 - Added launch codes and description to README
+
+==============================================================
+
+all -- 2022-12-09 13:02
+- Updated Design Doc with a Prioritized TODO List
+
+==============================================================
+
+jeremyK -- 2022-12-09 13:14
+
+- Added api_key files
+- Added read key command to __init__.py

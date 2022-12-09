@@ -13,6 +13,10 @@ app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'v9y$B&E)H+MbQeThWmZq4t7w!z%C*F-J'
 
+bestBuyKey = open("key_bestbuy.txt", "r").read()
+radarKey = open("key_radar.txt", "r").read()
+mailChimpKey = open("key_mailchimp.txt", "r").read()
+
 USER_DB_FILE = "users.db"
 
 @app.route('/', methods=['GET', 'POST'])
