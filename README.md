@@ -1,4 +1,4 @@
-# Storytelling Game by Spicy Vanilla
+# BetterBuy by Spicy Vanilla
 SoftDev  
 P01 -- BetterBuy  
 started: 2022-12-05  
