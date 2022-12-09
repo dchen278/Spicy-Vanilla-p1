@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
+SoftDev
+-->
+<html>
+
+  <head>
+    <title> Register Page </title>
+  </head>
+  Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
+  <br>
+  <body>
+    <h1>
+      Need to make an account?
+    </h1>
+
+
+    <h3>
+      Enter a username and password to create one!
+    </h3>
+    <form method="POST">
+      Username
+      <br>
+      <input type="text" name="username">
+      <br>
+      Password
+      <br>
+      <input type="password" name="password">
+      <br>
+      <input type="submit" name="sub1" value="Create Account">
+    </form>
+    <form method="GET" action="/goingbacktologin">
+      <button name="B_Login">
+          Back to Login
+      </button>
+    </form>
+    <br>
+    {{error_message}}
+  </body>
+
+</html>

@@ -41,3 +41,9 @@ all - 2022-12-08 12:30
 - Worked on mock page for landing page
 
 ==============================================================
+
+matthewY -- 2022-12-02 04:50
+- Added a login screen with basic safety features
+- Added a safety check to prevent access to main page without logging in
+- Added requirements.txt
+- Added launch codes and description to README

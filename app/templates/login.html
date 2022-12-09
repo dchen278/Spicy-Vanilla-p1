@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
+SoftDev
+-->
+<html>
+
+  <head>
+    <title> LOGIN PAGE </title>
+  </head>
+  Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
+  <br>
+  <body>
+    <h1>
+      Welcome, Travelers of the Intertoobz!
+    </h1>
+
+
+    <h3>
+      Enter your username and password below to proceed.
+    </h3>
+    <form method="POST">
+      Username
+      <br>
+      <input type="text" name="username">
+      <br>
+      Password
+      <br>
+      <input type="password" name="password">
+      <br>
+      <input type="submit" name="sub1" value="Login">
+    </form>
+    <form method="GET" action="/register">
+      <button name="B_register">
+          Register
+      </button>
+    </form>
+    <br>
+    {{error_message}}
+  </body>
+
+</html>
