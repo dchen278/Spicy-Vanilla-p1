@@ -21,6 +21,7 @@ pd 7
 
 jeremyK -- 2022-12-02 12:55
 - Created Devlog
+==============================================================
 
 davidC - 2022-12-07 03:32
 - Revised design doc to include more details and feedback from devos
@@ -31,5 +32,12 @@ davidC - 2022-12-07 03:32
     - How is order status being tracked?
     - Good API synergy (maps and ip)
 - TODO - write up api cards for bb, radar, and mailchimp
+
+==============================================================
+
+all - 2022-12-08 12:30
+- Worked on API cards for bestbuy, radar, and mailchimp
+- Worked on design doc
+- Worked on mock page for landing page
 
 ==============================================================
