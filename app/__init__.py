@@ -107,7 +107,7 @@ def tologin():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     if 'username' in session:
-        return app.redirect("/main")
+        return app.redirect("/")
     error = ''
     if request.method == 'POST':
         # check for an empty username
@@ -120,7 +120,7 @@ def register():
             return render_template('register.html', error_message=error)
         # prevent whitespaces to prevent usernames and passwords like "         e"
         if ' ' in request.form['username'] or ' ' in request.form['password']:
-            error = 'Whitespace is not permitted in the username or password'
+            error = 'Spaces are not permitted in the username or password'
             return render_template('register.html', error_message=error)
 
         users_db = sqlite3.connect(USER_DB_FILE)
@@ -152,19 +152,6 @@ def register():
             # confirmation message
 
     return render_template('register.html')
-
-
-@app.route('/main', methods=['GET', 'POST'])
-def root():
-    if request.method == 'GET':
-        try:
-            return render_template('index.html', username=session['username'])
-        except:
-            return app.redirect(app.url_for('login'))
-    else:
-        data = request.form
-        print(data)
-        return render_template('index.html', username=session['username'])
 
 
 if __name__ == "__main__":  # false if this file imported as module
