@@ -59,3 +59,12 @@ jeremyK -- 2022-12-09 13:14
 
 - Added api_key files
 - Added read key command to __init__.py
+
+==============================================================
+
+davidC -- 2022-12-11 12:00
+- Emulated the bestbuy navbar
+- Modified API routes for the default route to not be the register/login page
+- Added some custom css to the navbar
+- Designed Better Buy logo using Canva
+- Conducted further research on the bestbuy API
