@@ -8,7 +8,7 @@ from flask import session
 import sqlite3
 import requests
 import json
-from db import get_user_by_username, add_user, check_username, get_orders, add_order, get_order, get_users
+from db import get_user_by_username, add_user, check_username, get_orders, get_order, get_users
 
 app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
