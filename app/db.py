@@ -39,10 +39,10 @@ def get_order(id):
     return c.fetchone()
 
 
-def add_order(user_id, SKU, quantity, price, date, status, notes, user_id):
-    c.execute("INSERT INTO orders (user_id, SKU, quantity, price, date, status, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-              (user_id, SKU, quantity, price, date, status, notes, user_id))
-    db.commit()
+# def add_order(user_id, SKU, quantity, price, date, status, notes, user_id):
+#     c.execute("INSERT INTO orders (user_id, SKU, quantity, price, date, status, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+#               (user_id, SKU, quantity, price, date, status, notes, user_id))
+#     db.commit()
 
 
 def add_user(username, password):
