@@ -6,12 +6,11 @@ c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
 
 # three tables: users, orders
 c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
-c.execute("CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER, FOREIGN KEY (user_id) REFERENCES users(id), SKU TEXT, quantity INTEGER, price REAL, date TEXT, status TEXT, notes TEXT)")
+# execute with relation to users table
+c.execute("CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER, SKU TEXT, quantity INTEGER, price REAL, date TEXT, status TEXT, notes TEXT, FOREIGN KEY (user_id) REFERENCES users(id))")
 # TODO work this out later
 # c.execute("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, SKU TEXT, name TEXT, price REAL, description TEXT, image TEXT)")
 
-# insert a user
-c.execute("INSERT INTO users (username, password) VALUES ('admin', 'admin')")
 db.commit()  # save changes
 
 
@@ -40,10 +39,10 @@ def get_order(id):
     return c.fetchone()
 
 
-def add_order(user_id, SKU, quantity, price, date, status, notes):
-    c.execute("INSERT INTO orders (user_id, SKU, quantity, price, date, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?)",
-              (user_id, SKU, quantity, price, date, status, notes))
-    db.commit()
+# def add_order(user_id, SKU, quantity, price, date, status, notes, user_id):
+#     c.execute("INSERT INTO orders (user_id, SKU, quantity, price, date, status, notes, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+#               (user_id, SKU, quantity, price, date, status, notes, user_id))
+#     db.commit()
 
 
 def add_user(username, password):
