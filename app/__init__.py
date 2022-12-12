@@ -80,7 +80,7 @@ def login():
             if request.form['password'] == password:
                 # if password is correct, let the user login with that username
                 session['username'] = username
-                return app.redirect('/main')
+                return app.redirect('/')
             else:
                 error = "incorrect password"
         else:
