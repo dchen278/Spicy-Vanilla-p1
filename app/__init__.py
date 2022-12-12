@@ -8,6 +8,7 @@ from flask import session
 import sqlite3
 import requests
 import json
+from db import get_user_by_username, add_user, check_username, get_orders, add_order, get_order, get_users
 
 app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
@@ -102,6 +103,10 @@ def logout():
 def tologin():
     # Sends the user back to the login page
     return app.redirect(app.url_for('login'))
+
+def getip():
+    ip = requests.get('https://api.ipify.org').text
+    return ip
 
 
 @app.route('/register', methods=["GET", "POST"])
