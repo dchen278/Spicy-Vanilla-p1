@@ -7,6 +7,7 @@ from flask import request  # facilitate form submission
 from flask import session
 import sqlite3
 import requests
+import os
 import json
 from db import get_user_by_username, add_user, check_username, get_orders, get_order, get_users
 
@@ -14,10 +15,11 @@ app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'v9y$B&E)H+MbQeThWmZq4t7w!z%C*F-J'
 
+dirname = os.path.dirname(__file__)
 # qhqws47nyvgze2mq3qx4jadt
-bestBuyKey = open("keys/key_bestbuy.txt", "r").read()
-radarKey = open("keys/key_radar.txt", "r").read()
-mailChimpKey = open("keys/key_mailchimp.txt", "r").read()
+bestBuyKey = open(os.path.join(dirname,"keys/key_bestbuy.txt")).read()
+radarKey = open(os.path.join(dirname,"keys/key_radar.txt")).read()
+mailChimpKey = open(os.path.join(dirname,"keys/key_mailchimp.txt")).read()
 
 USER_DB_FILE = "users.db"
 
