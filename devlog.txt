@@ -72,3 +72,22 @@ davidC -- 2022-12-11 12:00
 
 ==============================================================
 
+davidC -- 2022-12-13 04:00
+- Emulated bestbuy styling for the login page
+- Added a custom css file for the login page
+- Init IP API
+- Linked register and login pages to the main page
+- Fixed register page styling and added a link to the login page
+- implemented trending products api calls
+- added a search api with handling for pagination and sorting coming soon
+- Implemented a base.html file to be inherited by all other pages (global navbar and footer)
+ 
+==============================================================
+
+davidC -- 2022-12-13 9:30
+- Added new results page with product cards
+- Adjust bestbuy api call to include customer reviews
+- New results route in __init__.py
+- Adjust search input to automatically redirect to results and display
+- Don't error out if no username in session
+- Added conditional user block in base html
