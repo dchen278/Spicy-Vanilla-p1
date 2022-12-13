@@ -1,7 +1,7 @@
 # Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
 # SoftDev
 
-from flask import Flask  # facilitate flask webserving
+from flask import Flask, jsonify  # facilitate flask webserving
 from flask import render_template  # facilitate jinja templating
 from flask import request  # facilitate form submission
 from flask import session
@@ -200,6 +200,7 @@ def register():
             # confirmation message
 
     return render_template('register.html')
+
 
 
 if __name__ == "__main__":  # false if this file imported as module
