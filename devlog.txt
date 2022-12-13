@@ -77,3 +77,4 @@ davidC -- 2022-12-13 04:00
 - Added a custom css file for the login page
 - Init IP API
 - Linked register and login pages to the main page
+- Fixed register page styling and added a link to the login page
