@@ -14,6 +14,7 @@ app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'v9y$B&E)H+MbQeThWmZq4t7w!z%C*F-J'
 
+# qhqws47nyvgze2mq3qx4jadt
 bestBuyKey = open("keys/key_bestbuy.txt", "r").read()
 radarKey = open("keys/key_radar.txt", "r").read()
 mailChimpKey = open("keys/key_mailchimp.txt", "r").read()
@@ -104,9 +105,33 @@ def tologin():
     # Sends the user back to the login page
     return app.redirect(app.url_for('login'))
 
+
 def getip():
     ip = requests.get('https://api.ipify.org').text
     return ip
+
+
+@app.route("/api/products/trending", methods=["GET"])
+def trending():
+    response = requests.get(
+        "https://api.bestbuy.com/v1/products/trendingViewed?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image&pageSize=20")
+    data = response.json()
+    return data
+
+
+@app.route("/api/products/search", methods=["GET"])
+def search():
+    query = request.args.get("query")
+    # handle pagination
+    page = request.args.get("page")
+    if page is None:
+        page = 1
+    else:
+        page = int(page)
+    response = requests.get(
+        "https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image&pageSize=20&page=" + str(page))
+    data = response.json()
+    return data
 
 
 @app.route('/register', methods=["GET", "POST"])
