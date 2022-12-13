@@ -133,6 +133,21 @@ def search():
     data = response.json()
     return data
 
+@app.route("/search", methods=["GET"])
+def search_page():
+    query = request.args.get("query")
+    # handle pagination
+    page = request.args.get("page")
+    if query is None:
+        return app.redirect("/")
+    if page is None:
+        page = 1
+    else:
+        page = int(page)
+    response = requests.get(
+        "https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page=" + str(page))
+    data = response.json()["products"]
+    return render_template("results.html", data=data, query=query, page=page)
 
 @app.route('/register', methods=["GET", "POST"])
 def register():

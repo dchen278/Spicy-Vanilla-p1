@@ -76,15 +76,18 @@ SoftDev
             </li>
           </ul>
         </div>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" action="/search" method="GET">
           <input
             class="form-control me-2"
             type="search"
+            name="query"
             style="width: 300px"
             placeholder="Search Better Buy"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button 
+            id="search-btn"
+          class="btn btn-outline-success" type="submit">
             <i class="fa fa-search"></i>
           </button>
         </form>
