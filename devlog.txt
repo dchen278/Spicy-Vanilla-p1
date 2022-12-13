@@ -80,3 +80,4 @@ davidC -- 2022-12-13 04:00
 - Fixed register page styling and added a link to the login page
 - implemented trending products api calls
 - added a search api with handling for pagination and sorting coming soon
+- Implemented a base.html file to be inherited by all other pages (global navbar and footer)
