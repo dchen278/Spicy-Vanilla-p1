@@ -69,3 +69,11 @@ davidC -- 2022-12-11 12:00
 - Designed Better Buy logo using Canva
 - Conducted further research on the bestbuy API
 - populated separate db file with clean code, table init, and helper functions for operations (insert, select, update, delete users and orders)
+
+==============================================================
+
+davidC -- 2022-12-13 04:00
+- Emulated bestbuy styling for the login page
+- Added a custom css file for the login page
+- Init IP API
+- Linked register and login pages to the main page

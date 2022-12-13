@@ -76,7 +76,7 @@ SoftDev
           border-radius: 5px;
           padding: 20px;
           margin-top: 5%;
-          width: 50%;
+          width: 40rem;
         "
       >
         <h3
@@ -90,8 +90,8 @@ SoftDev
           Sign in to BetterBuy
         </h3>
         <div class="row">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-4">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
             <form method="POST">
               <div class="form-group">
                 <input
@@ -127,12 +127,59 @@ SoftDev
               >
                 Sign in
               </button>
+
+              <!-- Keep me signed in checkbox-->
+              <div class="form-check text-start" style="margin-bottom: 10px">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Keep me signed in
+                </label>
+              </div>
+
+              <div class="text-start">
+                <p>
+                  By continuing you agree to our
+                  <a href="#">Terms and Conditions</a>, our
+                  <a href="#">Privacy Policy</a>, and the
+                  <a href="#">My Best Buy® Program Terms</a>.
+                </p>
+              </div>
+              <div class="divider">
+                <hr class="hr-text" data-content="OR" />
+              </div>
+              <div class="text-start">
+                <p>
+                  Don't have an account?
+                  <a href="/register">Create an account</a>
+                </p>
+              </div>
             </form>
           </div>
-          <div class="col-sm-4"></div>
+          <div class="col-sm-2"></div>
         </div>
       </div>
       <!-- End centered login form -->
+
+      <!-- Start Footer -->
+      <footer class="footer">
+        <div class="container">
+          <!--Terms and Conditions Privacy Interest-Based Ads links-->
+          <div class="row">
+            <div class="col-sm-6">
+              <a href="#">Terms and Conditions</a>
+              <span class="divider">|</span>
+              <a href="#">Privacy</a>
+              <span class="divider">|</span>
+              <a href="#">Interest-Based Ads</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </body>
 
     <script
