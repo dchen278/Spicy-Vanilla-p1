@@ -201,6 +201,11 @@ def register():
 
     return render_template('register.html')
 
+@app.route('/cart', methods=["GET", "POST"])
+def display():
+    error = ''
+    return render_template('cart.html', error_message=error)
+
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified

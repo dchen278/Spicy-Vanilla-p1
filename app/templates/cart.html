@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block main %}
+{% if data %}
+
+<div class="col-9">
+    <h1>Your Cart</h1>
+    <div class="row">
+        {% for product in data %}
+        <div class="row bg-white border rounded">
+            <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
+                    src="{{ product.image }}"></div>
+            <div class="col-md-6 mt-1">
+                <h5>
+                    <a href="/product/{{ product.sku }}">{{ product.name }}</a>
+                </h5>
+                <div class="d-flex flex-row">
+                    <span class="text-secondary" style="margin-right: 5px;">
+                        {{ product.customerReviewAverage }}
+                    </span>
+
+                    <span>
+                        {{ product.customerReviewCount }}
+                    </span>
+                </div>
+            </div>
+            <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                <div class="d-flex flex-row align-items-center">
+                    <h4 class="mr-1">$
+                        {{ product.salePrice }}
+                    </h4>
+                </div>
+                <h6 class="text-success">Free shipping</h6>
+                <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm"
+                        type="button">Details</button><button class="btn btn-outline-primary btn-sm mt-2"
+                        type="button">Add to wishlist</button></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Your Cart</h1>
+            <p>There are no items in your cart.</p>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
