@@ -123,10 +123,16 @@ SoftDev
             >Cart</span
           >
         </div>
+        {% if username %}
+        <div>
+          <a href="/logout" class="btn btn-outline-light">Logout</a>
+        </div> 
+        {% else %}
         <div>
           <a href="/login" class="btn btn-outline-light">Sign In</a>
           <a href="/register" class="btn btn-outline-light">Register</a>
         </div>
+        {% endif %}
         <!--End navbar toggler-->
       </div>
     </nav>

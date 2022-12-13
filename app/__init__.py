@@ -21,10 +21,11 @@ mailChimpKey = open("keys/key_mailchimp.txt", "r").read()
 
 USER_DB_FILE = "users.db"
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    # get the user's username from the session
+    username = session.get('username', None)
+    return render_template('index.html', username=username)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -135,6 +136,8 @@ def search():
 
 @app.route("/search", methods=["GET"])
 def search_page():
+    # dont error out if there is no username key in the session
+    username = session.get('username', None)
     query = request.args.get("query")
     # handle pagination
     page = request.args.get("page")
@@ -147,7 +150,7 @@ def search_page():
     response = requests.get(
         "https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page=" + str(page))
     data = response.json()["products"]
-    return render_template("results.html", data=data, query=query, page=page)
+    return render_template("results.html", data=data, query=query, page=page, username=username)
 
 @app.route('/register', methods=["GET", "POST"])
 def register():

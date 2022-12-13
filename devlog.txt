@@ -89,3 +89,5 @@ davidC -- 2022-12-13 9:30
 - Adjust bestbuy api call to include customer reviews
 - New results route in __init__.py
 - Adjust search input to automatically redirect to results and display
+- Don't error out if no username in session
+- Added conditional user block in base html
