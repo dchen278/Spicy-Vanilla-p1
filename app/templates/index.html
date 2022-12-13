@@ -1,293 +1,45 @@
-<!DOCTYPE html>
-<!--
-Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
-SoftDev
--->
-<html>
-  <head>
-    <title>BetterBuy</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/339055163d.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/static/css/index.css" />
-  </head>
-  <body>
-    <!-- Start Navbar -->
-    <nav class="navbar" style="background-color: #0046be">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img
-            src="/static/images/logo.png"
-            alt="Logo"
-            width="120px"
-            class="d-inline-block align-text-top"
-          />
-        </a>
-        <!-- Navbar Toggle -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-        </div>
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            style="width: 300px"
-            placeholder="Search Better Buy"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-        <!--Store Locator and Icon-->
-        <div class="store-locator">
-          <a href="#">
-            <i style="color: white" class="fa fa-map-marker"></i>
-          </a>
-          <span
-            style="
-              color: white;
-              font-size: 15px;
-              font-weight: 500;
-              margin-left: 5px;
-              font-size: larger;
-            "
-            >Store Locator</span
-          >
-        </div>
-        <!--Cart Icon-->
-        <div class="cart">
-          <a href="#">
-            <i style="color: white" class="fa fa-shopping-cart"></i>
-          </a>
-          <span
-            style="
-              color: white;
-              font-size: 15px;
-              font-weight: 500;
-              margin-left: 5px;
-              font-size: larger;
-            "
-            >Cart</span
-          >
-        </div>
-        <div>
-          <a href="/login" class="btn btn-outline-light">Sign In</a>
-          <a href="/register" class="btn btn-outline-light">Register</a>
-        </div>
-        <!--End navbar toggler-->
-      </div>
-    </nav>
-    <!-- End Navbar -->
-    <nav
-      class="navbar navbar-expand-lg navbar-dark"
-      style="
-        background-color: #0046be;
-        border-top: 1px solid rgb(209, 209, 209);
-      "
-    >
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li style="margin-left: 20px" class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Holiday Deals
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Holiday Deals Right Now
-                  </a>
-                </li>
-                <li><a class="dropdown-item" href="#"> Gift Ideas </a></li>
-                <li>
-                  <a class="dropdown-item" href="#"> Gift Cards </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Top Deals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Deal of the Day</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Totaltech Membership</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Credit Cards</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Gift Ideas</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                More
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#"> Health and Wellness </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"> Donate to St. Jude </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"> Bestbuy Outlet </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- Start logged in only stuff-->
-            <li class="nav-item dropdown mr-auto">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                David
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#"> My Account </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"> My Orders </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"> My Wish List </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Shop by Category! -->
-    <div class="row">
-      <!-- Laptops & Computers Icon -->
-      <div class="col-sm-6">
+{% extends 'base.html' %} {% block main %}
+<!-- Shop by Category! -->
+<div class="row">
+    <!-- Laptops & Computers Icon -->
+    <div class="col-sm-6">
         <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/pol_6502179-MMT-569003-0808-ec85fc42-4049-476f-ad8a-ad9e94e5607b.jpg;maxWidth=100" class="card-img-top">
-          <div class="card-body">
-            <a href="#" class="laptops&computers-link">Laptops and Computers</a>
-          </div>
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/pol_6502179-MMT-569003-0808-ec85fc42-4049-476f-ad8a-ad9e94e5607b.jpg;maxWidth=220"
+                class="card-img-top">
+            <div class="card-body">
+                <a href="#" class="laptops&computers-link">Laptops and Computers</a>
+            </div>
         </div>
-      </div>
-      <!-- TVs & Projector Icon -->
-      <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502215_sd.jpg;maxWidth=100" class="card-img-top">
-          <div class="card-body">
-            <a href="#" class="tvs&projectors-link">TVs and Projectors</a>
-          </div>
-        </div>
-      </div>
-      <!-- Apple Product Icon -->
-      <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-611301-ghp-img-icons-apple-d28633c9-bbe5-4f83-a0f6-55b738306ae1.jpg;maxWidth=100" class="card-img-top">
-          <div class="card-body">
-            <a href="#" class="apple-link">Apple Products</a>
-          </div>
-        </div>
-      </div>
-      <!-- Video Games, Consoles & VR Icon -->
-      <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6456/6456332_sd.jpg;maxWidth=100" class="card-img-top">
-          <div class="card-body">
-            <a href="#" class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
-          </div>
-        </div>
-      </div>
-      <!-- Cell Phones Icon -->
-      <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6519/6519950_sd.jpg;maxWidth=100" class="card-img-top; height: 10rem;">
-          <div class="card-body">
-            <a href="#" class="cellphones-link">Cell Phones</a>
-          </div>
-        </div>
-      </div>
-      <!-- Major Appliances Icon -->
-      <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-606895-ghp-img-icons-mappls-2157cc1d-a86a-48d0-98a3-15110ca655c7.jpg;maxWidth=100" class="card-img-top; height: 10rem;">
-          <div class="card-body">
-            <a href="#" class="cellphones-link">Major Appliances</a>
-          </div>
-        </div>
-      </div>
     </div>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"
-    >
-    </script>
-  </body>
-</html>
+    <!-- TVs & Projector Icon -->
+    <div class="col-sm-6">
+        <div class="card" style="width: 15rem; text-align: center;">
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502215_sd.jpg;maxWidth=220"
+                class="card-img-top">
+            <div class="card-body">
+                <a href="#" class="tvs&projectors-link">TVs and Projectors</a>
+            </div>
+        </div>
+    </div>
+    <!-- Apple Product Icon -->
+    <div class="col-sm-6">
+        <div class="card" style="width: 15rem; text-align: center;">
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-611301-ghp-img-icons-apple-d28633c9-bbe5-4f83-a0f6-55b738306ae1.jpg;maxWidth=220"
+                class="card-img-top">
+            <div class="card-body">
+                <a href="#" class="apple-link">Apple Products</a>
+            </div>
+        </div>
+    </div>
+    <!-- Video Games, Consoles & VR Icon -->
+    <div class="col-sm-6">
+        <div class="card" style="width: 15rem; text-align: center;">
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6456/6456332_sd.jpg;maxWidth=220"
+                class="card-img-top">
+            <div class="card-body">
+                <a href="#" class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
