@@ -1,33 +1,33 @@
 {% extends 'base.html' %} {% block main %}
 <!-- Shop by Category! -->
 <div class="row">
-    <!-- Laptops & Computers Icon -->
+    <!-- TV & Home Theater Icon -->
     <div class="col-sm-6">
         <div class="card" style="width: 15rem; text-align: center;">
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/pol_6502179-MMT-569003-0808-ec85fc42-4049-476f-ad8a-ad9e94e5607b.jpg;maxWidth=220"
                 class="rounded-circle">
             <div class="card-body">
-                <a href="#" class="laptops&computers-link">Laptops and Computers</a>
+                <a href="{{ url_for('search', variable=abcat0100000) }}" class="tv&hometheater-link">TV & Home Theater</a>
             </div>
         </div>
     </div>
-    <!-- TVs & Projector Icon -->
+    <!-- Audio Icon -->
     <div class="col-sm-6">
         <div class="card" style="width: 15rem; text-align: center;">
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502215_sd.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="tvs&projectors-link">TVs and Projectors</a>
+                <a href="{{ url_for('searchbycategory', variable=abcat0200000) }}" class="audio-link">Audio</a>
             </div>
         </div>
     </div>
-    <!-- Apple Product Icon -->
+    <!-- Music Instruments Icon -->
     <div class="col-sm-6">
         <div class="card" style="width: 15rem; text-align: center;">
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-611301-ghp-img-icons-apple-d28633c9-bbe5-4f83-a0f6-55b738306ae1.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="apple-link">Apple Products</a>
+                <a href="{{ url_for('searchbycategory', variable=abcat0207000) }}" class="musicinstruments-link">Music Instruments</a>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6456/6456332_sd.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
+                <a href="{{ url_for('searchbycategory', variable=) }}" class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6505/6505727_sd.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="headphones-link">Headphones</a>
+                <a href="{{ url_for('search', variable=) }}" class="headphones-link">Headphones</a>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6500/6500695_rd.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="pcgaming-link">PC Gaming</a>
+                <a href="{{ url_for('search', variable=) }}" class="pcgaming-link">PC Gaming</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-623320-ghp-img-icons-tablets-309e6e1b-379c-438d-b57c-7e6450a91e6e.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="tablets&ereaders-link">Tablets and E-Readers</a>
+                <a href="{{ url_for('search', variable=) }}" class="tablets&ereaders-link">Tablets and E-Readers</a>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6213/6213100_sd.jpg;maxWidth=220"
                 class="card-img-top">
             <div class="card-body">
-                <a href="#" class="cameras&camcorders&drones-link">Cameras, Camcorders and Drones</a>
+                <a href="{{ url_for('search', variable=) }}" class="cameras&camcorders&drones-link">Cameras, Camcorders and Drones</a>
             </div>
         </div>
     </div>

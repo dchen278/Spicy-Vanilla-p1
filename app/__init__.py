@@ -208,6 +208,13 @@ def display():
     error = ''
     return render_template('cart.html', error_message=error)
 
+@app.route('/searchbycategory/<variable>', methods=['GET','POST'])
+def searchbycategory(variable):
+    response = requests.get(
+        "https://api.bestbuy.com/v1/products/trendingViewed(categoryId=" + variable + ")?apiKey=" + bestBuyKey)
+    data = response.json()
+    return data
+    
 
 
 if __name__ == "__main__":  # false if this file imported as module
