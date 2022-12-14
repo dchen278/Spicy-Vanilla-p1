@@ -117,7 +117,8 @@ def getip():
 @app.route("/api/products/trending", methods=["GET"])
 def trending():
     response = requests.get(
-        "https://api.bestbuy.com/v1/products/trendingViewed?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image&pageSize=20")
+        f"https://api.bestbuy.com/v1/products/trendingViewed?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image&pageSize=20"
+    )
     data = response.json()
     return data
 
@@ -132,7 +133,8 @@ def search():
     else:
         page = int(page)
     response = requests.get(
-        "https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image&pageSize=20&page=" + str(page))
+        f"https://api.bestbuy.com/v1/products((search={query}))?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image&pageSize=20&page={str(page)}"
+    )
     data = response.json()
     return data
 
@@ -150,7 +152,8 @@ def search_page():
     else:
         page = int(page)
     response = requests.get(
-        "https://api.bestbuy.com/v1/products((search=" + query + "))?apiKey=" + bestBuyKey + "&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page=" + str(page))
+        f"https://api.bestbuy.com/v1/products((search={query}))?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page={str(page)}"
+    )
     data = response.json()["products"]
     return render_template("results.html", data=data, query=query, page=page, username=username)
 
@@ -211,7 +214,7 @@ def display():
 @app.route('/searchbycategory/<variable>', methods=['GET','POST'])
 def searchbycategory(variable):
     response = requests.get(
-        "https://api.bestbuy.com/v1/products/trendingViewed(categoryId=" + variable + ")?apiKey=" + bestBuyKey)
+        f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={variable})?apiKey={bestBuyKey}")
     data = response.json()
     return data
     
