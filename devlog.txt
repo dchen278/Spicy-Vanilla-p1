@@ -91,3 +91,9 @@ davidC -- 2022-12-13 9:30
 - Adjust search input to automatically redirect to results and display
 - Don't error out if no username in session
 - Added conditional user block in base html
+
+==============================================================
+
+jingF -- 2022-12-14 1:00
+- Worked on index.html tried to fix formatting
+- Created products.html
