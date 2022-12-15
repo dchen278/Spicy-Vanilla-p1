@@ -97,3 +97,12 @@ davidC -- 2022-12-13 9:30
 jingF -- 2022-12-14 1:00
 - Worked on index.html tried to fix formatting
 - Created products.html
+
+==============================================================
+
+davidC -- 2022-12-14 9:00
+- Added font awesome icon pack
+- added javascript for show and unshow password
+- added a favicon for the site (base.html)
+- rafactor code so that keys can be accessed regardless of where the script is ran
+- refactor new index.html to extend from base.html

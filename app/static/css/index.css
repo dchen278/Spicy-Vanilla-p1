@@ -70,3 +70,30 @@ body {
   background-color: #0A4ABF;
 }
 */
+
+.img-circle {
+  border-radius: 50%;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+ 
+  float: left;
+  margin-right: 10px;
+}
+
+.img-circle.hor img {
+  position: absolute;
+  left: 50%;
+  width: auto;
+  height: 200px;
+  transform: translateX(-50%);
+}
+
+.img-circle.vert img {
+  position: absolute;
+  top: 50%;
+  width: 200px;
+  height: auto;
+  transform: translateY(-50%);
+}

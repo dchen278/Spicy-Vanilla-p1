@@ -217,8 +217,6 @@ def searchbycategory(variable):
         f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={variable})?apiKey={bestBuyKey}")
     data = response.json()
     return data
-    
-
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified
