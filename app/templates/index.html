@@ -1,90 +1,128 @@
 {% extends 'base.html' %} {% block main %}
 <!-- Shop by Category! -->
-<div class="row">
-    <!-- TV & Home Theater Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/pol_6502179-MMT-569003-0808-ec85fc42-4049-476f-ad8a-ad9e94e5607b.jpg;maxWidth=220"
-                class="rounded-circle">
-            <div class="card-body">
-                <a href="{{ url_for('search', variable=abcat0100000) }}" class="tv&hometheater-link">TV & Home Theater</a>
-            </div>
-        </div>
-    </div>
-    <!-- Audio Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502215_sd.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('searchbycategory', variable=abcat0200000) }}" class="audio-link">Audio</a>
-            </div>
-        </div>
-    </div>
-    <!-- Music Instruments Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-611301-ghp-img-icons-apple-d28633c9-bbe5-4f83-a0f6-55b738306ae1.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('searchbycategory', variable=abcat0207000) }}" class="musicinstruments-link">Music Instruments</a>
-            </div>
-        </div>
-    </div>
-    <!-- Video Games, Consoles & VR Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6456/6456332_sd.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('searchbycategory', variable=abcat0207000) }}" class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
-            </div>
-        </div>
-    </div>
-    <!-- Headphones Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6505/6505727_sd.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('search', variable=abcat0207000) }}" class="headphones-link">Headphones</a>
-            </div>
-        </div>
-    </div>
-    <!-- PC Gaming Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6500/6500695_rd.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('search', variable=abcat0207000) }}" class="pcgaming-link">PC Gaming</a>
-            </div>
-        </div>
-    </div>
-    <!-- Tablets & E-Readers Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-623320-ghp-img-icons-tablets-309e6e1b-379c-438d-b57c-7e6450a91e6e.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('search', variable=abcat0207000) }}" class="tablets&ereaders-link">Tablets and E-Readers</a>
-            </div>
-        </div>
-    </div>
-    <!-- Cameras, Camcorders & Drones Icon -->
-    <div class="col-sm-6">
-        <div class="card" style="width: 15rem; text-align: center;">
-            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6213/6213100_sd.jpg;maxWidth=220"
-                class="card-img-top">
-            <div class="card-body">
-                <a href="{{ url_for('search', variable=abcat0207000) }}" class="cameras&camcorders&drones-link">Cameras, Camcorders and Drones</a>
-            </div>
-        </div>
-    </div>
-  </div>
-  
 
-  </div>
+<style>
+    .bf-bg-img {
+        background: url(https://pisces.bbystatic.com/image2/BestBuy_US/dam/GL-77301-cbw-ghp-bling-2bb5f2df-408d-43b1-9d99-71d12af7990d.png) no-repeat;
+        background-position: top;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .bf-bg-gradient {
+        background: linear-gradient(135deg, #00246d 27%, #0046be 40%, #0a6dfc 50%, #0046be 60%, #00246d 100%)
+    }
+</style>
+<div class="bf-bg-img"></div>
+<div class="bf-bg-gradient">
+    <div style="overflow-x:hidden">
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 style="color: white; text-align: center; padding-top: 2rem; padding-bottom: 2rem;">Shop by
+                            Great Deals.
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="bf-bg-img"></div> -->
+    <div class="row">
+        <!-- TV & Home Theater Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/pol_6502179-MMT-569003-0808-ec85fc42-4049-476f-ad8a-ad9e94e5607b.jpg;maxWidth=220"
+                    class="rounded-circle">
+                <div class="card-body">
+                    <a href="{{ url_for('search', variable=abcat0100000) }}" class="tv&hometheater-link">TV & Home
+                        Theater</a>
+                </div>
+            </div>
+        </div>
+        <!-- Audio Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502215_sd.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('searchbycategory', variable=abcat0200000) }}" class="audio-link">Audio</a>
+                </div>
+            </div>
+        </div>
+        <!-- Music Instruments Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-611301-ghp-img-icons-apple-d28633c9-bbe5-4f83-a0f6-55b738306ae1.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('searchbycategory', variable=abcat0207000) }}"
+                        class="musicinstruments-link">Music Instruments</a>
+                </div>
+            </div>
+        </div>
+        <!-- Video Games, Consoles & VR Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6456/6456332_sd.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('searchbycategory', variable=abcat0207000) }}"
+                        class="videogames&consoles&vr-link">Video Games, Consoles and VR Products</a>
+                </div>
+            </div>
+        </div>
+        <!-- Headphones Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6505/6505727_sd.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('search', variable=abcat0207000) }}" class="headphones-link">Headphones</a>
+                </div>
+            </div>
+        </div>
+        <!-- PC Gaming Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6500/6500695_rd.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('search', variable=abcat0207000) }}" class="pcgaming-link">PC Gaming</a>
+                </div>
+            </div>
+        </div>
+        <!-- Tablets & E-Readers Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/dam/MMT-623320-ghp-img-icons-tablets-309e6e1b-379c-438d-b57c-7e6450a91e6e.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('search', variable=abcat0207000) }}" class="tablets&ereaders-link">Tablets and
+                        E-Readers</a>
+                </div>
+            </div>
+        </div>
+        <!-- Cameras, Camcorders & Drones Icon -->
+        <div class="col-sm-6">
+            <div class="card" style="width: 15rem; text-align: center;">
+                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6213/6213100_sd.jpg;maxWidth=220"
+                    class="card-img-top">
+                <div class="card-body">
+                    <a href="{{ url_for('search', variable=abcat0207000) }}"
+                        class="cameras&camcorders&drones-link">Cameras, Camcorders and Drones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
 </div>
 {% endblock %}
 
