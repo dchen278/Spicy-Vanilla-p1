@@ -44,9 +44,15 @@ def login():
         users_c.execute(
             "CREATE TABLE users(username TEXT PRIMARY KEY, password TEXT)")
 
+    try:
+        users_c.execute("SELECT * FROM order_history")
+    except:
+        users_c.execute(
+            "CREATE TABLE order_history(username TEXT PRIMARY KEY, cart TEXT, history TEXT)")
+
     error = ""
     username = ""
-    users_c.execute("SELECT * FROM users")
+    users_c.execute("SELECT * FROM order_history")
     user_list = users_c.fetchall()
     print("valid accounts are :" + str(user_list))
 
@@ -195,6 +201,11 @@ def register():
             users_c.execute(command, (username, password))
             users_db.commit()
 
+            #add the user into the order_history table
+            command = "INSERT INTO order_history values(?, ?, ?);"
+            users_c.execute(command, (username, None, None))
+            users_db.commit()
+
             # diagnostic print
             users_c.execute("SELECT * FROM users")
             user_list = users_c.fetchall()
@@ -218,6 +229,11 @@ def searchbycategory(variable):
     data = response.json()
     print(data)
     return data
+
+@app.route('/add_cart', methods=["GET", "POST"])
+def add_to_cart():
+    error = ''
+    return render_template('cart.html', error_message=error)
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified

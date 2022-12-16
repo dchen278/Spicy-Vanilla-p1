@@ -25,6 +25,9 @@ SoftDev
     }
     document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("password-switch").addEventListener("click", showPassword);
+      document.getElementById("return-btn").addEventListener("click", function() {
+        history.back();
+      });
     });
   </script>
 </head>
@@ -38,7 +41,7 @@ SoftDev
       </a>
 
       <div>
-        <a href="/" class="btn btn-outline-none text-white">Return to previous page</a>
+        <button class="return-btn" class="btn btn-outline-none text-white">Return to previous page</a>
       </div>
       <!--End navbar toggler-->
     </div>
