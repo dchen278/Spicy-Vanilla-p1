@@ -46,13 +46,14 @@
                         <div class="d-flex flex-row align-items-center">
                             <h4 class="mr-1">$
                                 {{ product.salePrice }}
+                                {{ product.sku }}
                             </h4>
                         </div>
                         <h6 class="text-success">Free shipping</h6>
                         <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm"
                                 type="button">Details</button>
                                 <form method="POST" action="/add_cart">
-                                <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value={{SKU}} 
+                                <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value="{{ product.sku }}" 
                                 >Add to wishlist</button>
                                 </form>>
                             </div>
