@@ -38,6 +38,7 @@ def login():
     users_db = sqlite3.connect(USER_DB_FILE)
     users_c = users_db.cursor()
 
+    '''
     try:
         users_c.execute("SELECT * FROM users")
     except:
@@ -49,6 +50,7 @@ def login():
     except:
         users_c.execute(
             "CREATE TABLE order_history(username TEXT PRIMARY KEY, cart, history)")
+    '''
 
     error = ""
     username = ""
