@@ -52,7 +52,7 @@ def login():
 
     error = ""
     username = ""
-    users_c.execute("SELECT * FROM order_history")
+    users_c.execute("SELECT * FROM users")
     user_list = users_c.fetchall()
     print("valid accounts are :" + str(user_list))
 
@@ -231,8 +231,24 @@ def searchbycategory(variable):
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
-    error = ''
-    return render_template('cart.html', error_message=error)
+    if request.method == "POST":
+        error = ''
+
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
+        username = session['username']
+        print("Username is: " + username)
+
+        users_c.execute("SELECT * FROM order_history WHERE username=?", (username))
+        full_cart = users_c.fetchone()[0]
+
+        full_cart += "<br>" + request.form['SKU']
+
+        users_c.execute("UPDATE order_history SET cart=? WHERE username=?",(full_cart, username))
+        users_db.commit()
+
+        return render_template('cart.html', error_message=error)
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified
