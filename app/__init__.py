@@ -225,8 +225,9 @@ def display():
 @app.route('/searchbycategory/<variable>', methods=['GET','POST'])
 def searchbycategory(variable):
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={variable})?apiKey={bestBuyKey}")
+        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}")#&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage")
     data = response.json()
+    print(data)
     return data
 
 @app.route('/add_cart', methods=["GET", "POST"])
