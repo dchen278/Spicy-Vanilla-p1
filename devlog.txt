@@ -139,5 +139,6 @@ matthewY -- 2022-12-17 5:03
 - fixed bug where account registration would not work if database was created via db.py
 - wiped users.db because some accounts were created before order_history table was created
     - this meant that these accounts existed in the users table but not in the order_history table
+- changed base.html such that account dropdown now displays actual username, and does not display if user is not logged in
 
 ==============================================================
