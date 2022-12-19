@@ -104,6 +104,11 @@ matthewY -- 2022-12-13 12:40
 
 ==============================================================
 
+jeremyK -- 2022-12-13 12:40
+- created Headphones, PC Gaming, Tablets & E-Readers, and template icon
+
+==============================================================
+
 jingF -- 2022-12-14 1:00
 - Worked on index.html tried to fix formatting
 - Created products.html
@@ -116,6 +121,19 @@ davidC -- 2022-12-14 9:00
 - added a favicon for the site (base.html)
 - rafactor code so that keys can be accessed regardless of where the script is ran
 - refactor new index.html to extend from base.html
+
+==============================================================
+
+jeremyK -- 2022-12-14 12:38
+- added best buy icons for each category item
+- added links to the respective categories
+
+==============================================================
+
+jeremyK -- 2022-12-14 16:00
+- changed all links to f-strings 
+- added categoryIDs to each category to make searchs more exact (than category names)
+- deleted old categories (changing to categoryIDs meant changing the categories themselves)
 
 ==============================================================
 
@@ -142,3 +160,8 @@ matthewY -- 2022-12-17 5:03
 - changed base.html such that account dropdown now displays actual username, and does not display if user is not logged in
 
 ==============================================================
+
+jeremyK -- 2022-12-19 1:41
+- added all categories to base.html along with their respective pictures
+- each category call now returns 20-100 items of that category (depending on pageSize)
+- linked each category to its repective class
