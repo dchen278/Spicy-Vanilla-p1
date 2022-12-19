@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block main %}
+{% if data %}
+<!-- row with side bar for filters and results; products are displayed as cards -->
+
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+      <div class="col">
+        <h3>Contact Best Buy</h3>
+      </div>
+      <div class="col">
+        <h2>What can we help you with?</h2>
+      </div>
+      <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
+      <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
+      <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
+      <button type="button" class="btn btn-outline-primary btn-lg">Primary</button>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+  {% endblock %}
