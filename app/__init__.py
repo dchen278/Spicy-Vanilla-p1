@@ -231,10 +231,15 @@ def cart_display():
 @app.route('/searchbycategory/<variable>', methods=['GET','POST'])
 def searchbycategory(variable):
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}")#&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage")
+        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
     data = response.json()
+    products = data["products"]
+    pageSize = data["pageSize"]
     print(data)
-    return data
+    print(products)
+    print(pageSize)
+
+    return render_template("results.html")
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
