@@ -125,6 +125,13 @@ def trending():
     data = response.json()
     return data
 
+@app.route("/api/products/test", methods=["GET"])
+def test_sku():
+    response = requests.get(
+        f"https://api.bestbuy.com/v1/products(sku in (1197018,1312503,1003287))?apiKey={bestBuyKey}&format=json"
+    )
+    data = response.json()
+    return data
 
 @app.route("/api/products/search", methods=["GET"])
 def search():
