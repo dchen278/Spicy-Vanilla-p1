@@ -228,18 +228,17 @@ def cart_display():
         error = 'Please log in to add items to your cart.'
     return render_template('cart.html', error=error, username=username)
 
-@app.route('/searchbycategory/<variable>', methods=['GET','POST'])
+@app.route('/searchbycategory/categoryID=<variable>', methods=['GET','POST'])
 def searchbycategory(variable):
     response = requests.get(
+        #pageSize=[number] allows you to change how many products you want in the json file returned
         f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
-    data = response.json()
-    products = data["products"]
-    pageSize = data["pageSize"]
-    print(data)
-    print(products)
-    print(pageSize)
+    data = response.json()["products"]
+    #products = data["products"]
+    #print(data)
+    #print(products)
 
-    return render_template("results.html")
+    return render_template("results.html", data=data)
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
