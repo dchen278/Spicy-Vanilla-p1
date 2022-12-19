@@ -17,11 +17,12 @@ app.secret_key = b'v9y$B&E)H+MbQeThWmZq4t7w!z%C*F-J'
 
 dirname = os.path.dirname(__file__)
 # qhqws47nyvgze2mq3qx4jadt
-bestBuyKey = open(os.path.join(dirname,"keys/key_bestbuy.txt")).read()
-radarKey = open(os.path.join(dirname,"keys/key_radar.txt")).read()
-mailChimpKey = open(os.path.join(dirname,"keys/key_mailchimp.txt")).read()
+bestBuyKey = open(os.path.join(dirname, "keys/key_bestbuy.txt")).read()
+radarKey = open(os.path.join(dirname, "keys/key_radar.txt")).read()
+mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
 
 USER_DB_FILE = "users.db"
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -111,12 +112,6 @@ def logout():
     return app.redirect(app.url_for('login'))
 
 
-@app.route('/goingbacktologin', methods=["GET", "POST"])
-def tologin():
-    # Sends the user back to the login page
-    return app.redirect(app.url_for('login'))
-
-
 def getip():
     ip = requests.get('https://api.ipify.org').text
     return ip
@@ -146,6 +141,7 @@ def search():
     data = response.json()
     return data
 
+
 @app.route("/search", methods=["GET"])
 def search_page():
     # dont error out if there is no username key in the session
@@ -162,8 +158,11 @@ def search_page():
     response = requests.get(
         f"https://api.bestbuy.com/v1/products((search={query}))?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page={str(page)}"
     )
+    if response.status_code != 200:
+        return app.redirect("/")
     data = response.json()["products"]
     return render_template("results.html", data=data, query=query, page=page, username=username)
+
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -203,7 +202,7 @@ def register():
             users_c.execute(command, (username, password))
             users_db.commit()
 
-            #add the user into the order_history table
+            # add the user into the order_history table
             command = "INSERT INTO order_history values(?, ?, ?);"
             users_c.execute(command, (username, None, None))
             users_db.commit()
@@ -219,6 +218,7 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/cart', methods=["GET", "POST"])
 def cart_display():
     username = session.get('username', None)
@@ -228,17 +228,19 @@ def cart_display():
         error = 'Please log in to add items to your cart.'
     return render_template('cart.html', error=error, username=username)
 
-@app.route('/searchbycategory/categoryID=<variable>', methods=['GET','POST'])
+
+@app.route('/searchbycategory/categoryID=<variable>', methods=['GET', 'POST'])
 def searchbycategory(variable):
     response = requests.get(
-        #pageSize=[number] allows you to change how many products you want in the json file returned
+        # pageSize=[number] allows you to change how many products you want in the json file returned
         f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
     data = response.json()["products"]
     #products = data["products"]
-    #print(data)
-    #print(products)
+    # print(data)
+    # print(products)
 
     return render_template("results.html", data=data)
+
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
@@ -247,23 +249,25 @@ def add_to_cart():
         users_db = sqlite3.connect(USER_DB_FILE)
         users_c = users_db.cursor()
 
-
         username = ""
         username = session['username']
         print("Username is: " + username)
 
-        users_c.execute("SELECT cart FROM order_history WHERE username=?", (username,))
+        users_c.execute(
+            "SELECT cart FROM order_history WHERE username=?", (username,))
         full_cart = users_c.fetchone()[0]
 
-        if(full_cart == None):
+        if (full_cart == None):
             full_cart = request.form['SKU']
         else:
             full_cart += " " + request.form['SKU']
 
-        users_c.execute("UPDATE order_history SET cart=? WHERE username=?",(full_cart, username,))
+        users_c.execute(
+            "UPDATE order_history SET cart=? WHERE username=?", (full_cart, username,))
         users_db.commit()
 
     return app.redirect(app.url_for('cart_display'))
+
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified
