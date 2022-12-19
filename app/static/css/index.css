@@ -96,3 +96,27 @@ body {
   height: auto;
   transform: translateY(-50%);
 }
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 4px solid #598bf7;
+}
+
+.product-display .card {
+  background-color: transparent;
+  border: none;
+}
+
+.product-display a {
+  color: #ffe000;
+  text-decoration: none;
+  font-weight: bold;
+}

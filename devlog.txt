@@ -165,3 +165,10 @@ jeremyK -- 2022-12-19 1:41
 - added all categories to base.html along with their respective pictures
 - each category call now returns 20-100 items of that category (depending on pageSize)
 - linked each category to its repective class
+
+==============================================================
+
+davidC -- 2022-12-19 12:00
+- Fixed landing page to be more responsive and represent the bestbuy landing page
+- Added new footer
+- Properly closed all html tags
