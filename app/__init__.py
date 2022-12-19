@@ -39,20 +39,6 @@ def login():
     users_db = sqlite3.connect(USER_DB_FILE)
     users_c = users_db.cursor()
 
-    '''
-    try:
-        users_c.execute("SELECT * FROM users")
-    except:
-        users_c.execute(
-            "CREATE TABLE users(username TEXT PRIMARY KEY, password TEXT)")
-
-    try:
-        users_c.execute("SELECT * FROM order_history")
-    except:
-        users_c.execute(
-            "CREATE TABLE order_history(username TEXT PRIMARY KEY, cart, history)")
-    '''
-
     error = ""
     username = ""
     users_c.execute("SELECT * FROM users")
@@ -230,10 +216,14 @@ def register():
 def cart_display():
     username = session.get('username', None)
     if 'username' in session:
+        response = requests.get(
+            f"https://api.bestbuy.com/v1/products(sku in (1197018,1312503,1003287))?apiKey={bestBuyKey}&format=json"
+        )
+        data = response.json()["products"]
         error = 'You have no items in your cart.'
     else:
         error = 'Please log in to add items to your cart.'
-    return render_template('cart.html', error=error, username=username)
+    return render_template('cart.html', error=error, data=data, username=username)
 
 
 @app.route('/searchbycategory/categoryID=<variable>', methods=['GET', 'POST'])

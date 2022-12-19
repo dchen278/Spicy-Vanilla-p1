@@ -26,10 +26,15 @@
                 <div class="d-flex flex-row align-items-center">
                     <h4 class="mr-1">$
                         {{ product.salePrice }}
+                        {{ product.sku }}
                     </h4>
                 </div>
                 <h6 class="text-success">Free shipping</h6>
-                <div class="d-flex flex-column mt-4"></div>
+                <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm"
+                        type="button">Details</button>
+                        <form method="POST" action="/add_cart">
+                        </form>
+                    </div>
             </div>
         </div>
         {% endfor %}
