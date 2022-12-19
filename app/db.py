@@ -5,9 +5,9 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
 
 # three tables: users, orders
-c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
+c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, password TEXT)")
 # execute with relation to users table
-c.execute("CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER, SKU TEXT, quantity INTEGER, price REAL, date TEXT, status TEXT, notes TEXT, FOREIGN KEY (user_id) REFERENCES users(id))")
+c.execute("CREATE TABLE IF NOT EXISTS order_history(username TEXT PRIMARY KEY, cart, history)")
 # TODO work this out later
 # c.execute("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, SKU TEXT, name TEXT, price REAL, description TEXT, image TEXT)")
 

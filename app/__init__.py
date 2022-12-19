@@ -38,6 +38,7 @@ def login():
     users_db = sqlite3.connect(USER_DB_FILE)
     users_c = users_db.cursor()
 
+    '''
     try:
         users_c.execute("SELECT * FROM users")
     except:
@@ -48,11 +49,12 @@ def login():
         users_c.execute("SELECT * FROM order_history")
     except:
         users_c.execute(
-            "CREATE TABLE order_history(username TEXT PRIMARY KEY, cart TEXT, history TEXT)")
+            "CREATE TABLE order_history(username TEXT PRIMARY KEY, cart, history)")
+    '''
 
     error = ""
     username = ""
-    users_c.execute("SELECT * FROM order_history")
+    users_c.execute("SELECT * FROM users")
     user_list = users_c.fetchall()
     print("valid accounts are :" + str(user_list))
 
@@ -218,21 +220,50 @@ def register():
     return render_template('register.html')
 
 @app.route('/cart', methods=["GET", "POST"])
-def display():
-    error = ''
-    return render_template('cart.html', error_message=error)
+def cart_display():
+    username = session.get('username', None)
+    if 'username' in session:
+        error = 'You have no items in your cart.'
+    else:
+        error = 'Please log in to add items to your cart.'
+    return render_template('cart.html', error=error, username=username)
 
-@app.route('/searchbycategory/<variable>', methods=['GET','POST'])
+@app.route('/searchbycategory/categoryID=<variable>', methods=['GET','POST'])
 def searchbycategory(variable):
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products/trendingViewed(categoryId={variable})?apiKey={bestBuyKey}")
-    data = response.json()
-    return data
+        #pageSize=[number] allows you to change how many products you want in the json file returned
+        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
+    data = response.json()["products"]
+    #products = data["products"]
+    #print(data)
+    #print(products)
+
+    return render_template("results.html", data=data)
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
-    error = ''
-    return render_template('cart.html', error_message=error)
+    if request.method == "POST" and 'username' in session:
+
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
+
+        username = ""
+        username = session['username']
+        print("Username is: " + username)
+
+        users_c.execute("SELECT cart FROM order_history WHERE username=?", (username,))
+        full_cart = users_c.fetchone()[0]
+
+        if(full_cart == None):
+            full_cart = request.form['SKU']
+        else:
+            full_cart += " " + request.form['SKU']
+
+        users_c.execute("UPDATE order_history SET cart=? WHERE username=?",(full_cart, username,))
+        users_db.commit()
+
+    return app.redirect(app.url_for('cart_display'))
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified

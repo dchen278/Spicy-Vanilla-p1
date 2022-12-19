@@ -159,10 +159,11 @@ SoftDev
             </ul>
           </li>
 
+          {% if username %}
           <!-- Start logged in only stuff-->
           <li class="nav-item dropdown mr-auto">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              David
+              {{username}}
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -176,6 +177,7 @@ SoftDev
               </li>
             </ul>
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>

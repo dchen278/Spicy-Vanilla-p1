@@ -72,6 +72,11 @@ davidC -- 2022-12-11 12:00
 
 ==============================================================
 
+matthewY -- 2022-12-12 12:40
+- Added bootstrap formatting to login page
+
+==============================================================
+
 davidC -- 2022-12-13 04:00
 - Emulated bestbuy styling for the login page
 - Added a custom css file for the login page
@@ -94,6 +99,16 @@ davidC -- 2022-12-13 9:30
 
 ==============================================================
 
+matthewY -- 2022-12-13 12:40
+- Created cart page and linked it to home page
+
+==============================================================
+
+jeremyK -- 2022-12-13 12:40
+- created Headphones, PC Gaming, Tablets & E-Readers, and template icon
+
+==============================================================
+
 jingF -- 2022-12-14 1:00
 - Worked on index.html tried to fix formatting
 - Created products.html
@@ -106,3 +121,47 @@ davidC -- 2022-12-14 9:00
 - added a favicon for the site (base.html)
 - rafactor code so that keys can be accessed regardless of where the script is ran
 - refactor new index.html to extend from base.html
+
+==============================================================
+
+jeremyK -- 2022-12-14 12:38
+- added best buy icons for each category item
+- added links to the respective categories
+
+==============================================================
+
+jeremyK -- 2022-12-14 16:00
+- changed all links to f-strings 
+- added categoryIDs to each category to make searchs more exact (than category names)
+- deleted old categories (changing to categoryIDs meant changing the categories themselves)
+
+==============================================================
+
+matthewY -- 2022-12-15 12:35
+- Created order_history table for storing a user's cart items and past orders
+- Newly registered users are now added to both the users table and the order_history table
+
+==============================================================
+
+matthewY -- 2022-12-17 4:39
+- "add to cart" button now works
+    - adds item SKU to current user in order_history table
+    - redirects user to cart page
+- added safety check to add_cart page
+- fixed logout button bug on cart page
+- added new error messages to cart page
+
+==============================================================
+
+matthewY -- 2022-12-17 5:03
+- fixed bug where account registration would not work if database was created via db.py
+- wiped users.db because some accounts were created before order_history table was created
+    - this meant that these accounts existed in the users table but not in the order_history table
+- changed base.html such that account dropdown now displays actual username, and does not display if user is not logged in
+
+==============================================================
+
+jeremyK -- 2022-12-19 1:41
+- added all categories to base.html along with their respective pictures
+- each category call now returns 20-100 items of that category (depending on pageSize)
+- linked each category to its repective class
