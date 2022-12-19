@@ -173,3 +173,10 @@ davidC -- 2022-12-19 12:00
 - Added new footer
 - Properly closed all html tags
 - Handle search error exception if no results are found
+
+==============================================================
+
+jeremyK -- 2022-12-19 12:50
+- Replaced category icons so they match the category
+- Resized a few icons to make them fit in their circles
+- Edited url_for links
