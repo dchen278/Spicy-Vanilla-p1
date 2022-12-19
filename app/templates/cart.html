@@ -14,11 +14,11 @@
                 </h5>
                 <div class="d-flex flex-row">
                     <span class="text-secondary" style="margin-right: 5px;">
-                        {{ product.customerReviewAverage }}
+                        {{ product.customerReviewAverage }} Stars
                     </span>
 
                     <span>
-                        {{ product.customerReviewCount }}
+                        {{ product.customerReviewCount }} Customer Reviews
                     </span>
                 </div>
             </div>
@@ -26,11 +26,12 @@
                 <div class="d-flex flex-row align-items-center">
                     <h4 class="mr-1">$
                         {{ product.salePrice }}
-                        {{ product.sku }}
                     </h4>
                 </div>
+                <p>SKU: {{ product.sku }}</p>
                 <h6 class="text-success">Free shipping</h6>
-                <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm"
+                <div class="d-flex flex-column mt-4">
+                    <button class="btn btn-primary btn-sm"
                         type="button">Details</button>
                         <form method="POST" action="/add_cart">
                         </form>

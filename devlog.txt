@@ -72,7 +72,7 @@ davidC -- 2022-12-11 12:00
 
 ==============================================================
 
-matthewY -- 2022-12-12 12:40
+matthewY -- 2022-12-12 13:40
 - Added bootstrap formatting to login page
 
 ==============================================================
@@ -99,7 +99,7 @@ davidC -- 2022-12-13 9:30
 
 ==============================================================
 
-matthewY -- 2022-12-13 12:40
+matthewY -- 2022-12-13 13:40
 - Created cart page and linked it to home page
 
 ==============================================================
@@ -137,7 +137,7 @@ jeremyK -- 2022-12-14 16:00
 
 ==============================================================
 
-matthewY -- 2022-12-15 12:35
+matthewY -- 2022-12-15 13:35
 - Created order_history table for storing a user's cart items and past orders
 - Newly registered users are now added to both the users table and the order_history table
 
@@ -180,3 +180,11 @@ jeremyK -- 2022-12-19 12:50
 - Replaced category icons so they match the category
 - Resized a few icons to make them fit in their circles
 - Edited url_for links
+
+==============================================================
+
+matthewY -- 2022-12-19 13:13
+- minor formatting adjustments for results and categories page
+- got display for cart items working
+
+==============================================================
