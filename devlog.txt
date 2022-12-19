@@ -172,3 +172,4 @@ davidC -- 2022-12-19 12:00
 - Fixed landing page to be more responsive and represent the bestbuy landing page
 - Added new footer
 - Properly closed all html tags
+- Handle search error exception if no results are found
