@@ -180,3 +180,4 @@ jeremyK -- 2022-12-19 12:50
 - Replaced category icons so they match the category
 - Resized a few icons to make them fit in their circles
 - Edited url_for links
+- On results.html, added CustomerReviewAverage, Number of Customer Reviews, SKU, and Price Tags

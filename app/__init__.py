@@ -248,6 +248,13 @@ def searchbycategory(variable):
 
     return render_template("results.html", data=data)
 
+@app.route('/searchbysku/sku=<variable>', methods=['GET', 'POST'])
+def searchbysku(variable):
+    response = request.get(
+        f"https://api.bestbuy.com/v1/products((search={variable}))?apiKey={bestBuyKey}&format=json"
+    )
+    data = response.json()["products"]
+    return render_template("products.html", data=data)
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():
