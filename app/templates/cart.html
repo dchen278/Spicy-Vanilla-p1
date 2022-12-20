@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block main %}
 {% if data %}
 
-<div class="col-9">
-    <h1>Your Cart</h1>
+<div class="col-9 m-5">
+    <h1 style="font-size: 40px; font-weight: bold; margin-bottom: 20px;">
+        Your Cart</h1>
     <div class="row">
         {% for product in data %}
         <div class="row bg-white border rounded">
@@ -31,11 +32,8 @@
                 <p>SKU: {{ product.sku }}</p>
                 <h6 class="text-success">Free shipping</h6>
                 <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-primary btn-sm"
-                        type="button">Details</button>
-                        <form method="POST" action="/add_cart">
-                        </form>
-                    </div>
+                    <button class="btn btn-primary btn-sm" type="button">Details</button>
+                </div>
             </div>
         </div>
         {% endfor %}
