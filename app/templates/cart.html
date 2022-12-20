@@ -11,6 +11,13 @@
             total += parseFloat(prices[i].innerText.replace("$", ""));
         }
         document.getElementById("total-amount").innerHTML = `<strong>$${total}</strong>`;
+
+        var today = new Date();
+        var dd = String(today.getDate() + 1).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
+        var yyyy = today.getFullYear();
+        today = yyyy + "-" + mm + "-" + dd;
+        document.getElementById("delivery-date").innerHTML = `<strong>Get it by ${today}</strong> if you order in the next 1 hour and 30 minutes`;
     });
 </script>
 <section class="h-100 gradient-custom">
@@ -93,6 +100,7 @@
                     <div class="card-body">
                         <p><strong>Expected shipping delivery</strong></p>
                         <!-- <p class="mb-0">12.10.2020 - 14.10.2020</p> -->
+                        <span id="delivery-date"></span>
                     </div>
                 </div>
                 <div class="card mb-4 mb-lg-0">
