@@ -219,3 +219,4 @@ davidC -- 2022-12-20 04:00
 davidC -- 2022-12-20 12:20
 - Added new carts page for displaying all cart products
 - Handled exception when there is no username when accessing cart page
+- implemented remove from cart functionality
