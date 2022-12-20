@@ -70,17 +70,23 @@
                             <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                 <!-- Data -->
                                 <p><strong>
-                                        <a href="/product/{{ product.sku }}" class="text-reset">{{ product.name }}</a>
+                                        <a href="/searchbysku/{{ product.sku }}" class="text-reset">{{ product.name }}</a>
                                     </strong></p>
                                 <p>
                                     <strong>SKU:</strong> {{ product.sku }}
                                 </p>
+<<<<<<< HEAD
                                 <button 
                                 onclick="removeItem('{{ product.sku }}')"
                                 type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+=======
+                                <form method="POST" action="/remove_cart">
+                                <button name="SKU" value="{{ product.sku }}" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+>>>>>>> 29b1fde5942375731747238c8fd54738838acb5d
                                     title="Remove item">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                                </form>
                                 <!-- Data -->
                             </div>
 
