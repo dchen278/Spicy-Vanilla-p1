@@ -5,6 +5,7 @@ from flask import Flask, jsonify  # facilitate flask webserving
 from flask import render_template  # facilitate jinja templating
 from flask import request  # facilitate form submission
 from flask import session
+from flask import Response
 import sqlite3
 import requests
 import os
@@ -225,6 +226,8 @@ def cart_display():
         response = requests.get(
             f"https://api.bestbuy.com/v1/products(sku in ({full_cart}))?apiKey={bestBuyKey}&format=json"
         )
+        if response.status_code != 200:
+            return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
         data = response.json()["products"]
         error = 'You have no items in your cart.'
     else:
@@ -314,6 +317,61 @@ def add_to_cart():
         users_db.commit()
 
     return app.redirect(app.url_for('cart_display'))
+
+@app.route("/update_quantity", methods=["GET", "POST"])
+def update_quantity():
+    if request.method == "POST" and 'username' in session:
+
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
+        username = ""
+        username = session['username']
+        print("Username is: " + username)
+
+        users_c.execute(
+            "SELECT cart FROM order_history WHERE username=?", (username,))
+        full_cart = users_c.fetchone()[0]
+
+        if (full_cart == None):
+            full_cart = ""
+        else:
+            full_cart = full_cart.replace(request.form['SKU'], "")
+
+        for i in range(int(request.form['quantity'])):
+            full_cart += "," + request.form['SKU']
+
+        users_c.execute(
+            "UPDATE order_history SET cart=? WHERE username=?", (full_cart, username,))
+        users_db.commit()
+
+    return app.redirect(app.url_for('cart_display'))
+
+@app.route('/remove_cart', methods=["GET", "POST"])
+def remove_from_cart():
+    if request.method == "POST" and 'username' in session:
+
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
+        username = ""
+        username = session['username']
+        print("Username is: " + username)
+
+        users_c.execute(
+            "SELECT cart FROM order_history WHERE username=?", (username,))
+        full_cart = users_c.fetchone()[0]
+
+        if (full_cart == None):
+            full_cart = ""
+        else:
+            full_cart = full_cart.replace(request.form['SKU'], "")
+
+        users_c.execute(
+            "UPDATE order_history SET cart=? WHERE username=?", (full_cart, username,))
+        users_db.commit()
+    return Response(status=200)
+    # return app.redirect(app.url_for('cart_display'))
 
 
 if __name__ == "__main__":  # false if this file imported as module

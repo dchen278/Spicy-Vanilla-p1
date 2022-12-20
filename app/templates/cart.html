@@ -19,6 +19,27 @@
         today = yyyy + "-" + mm + "-" + dd;
         document.getElementById("delivery-date").innerHTML = `<strong>Get it by ${today}</strong> if you order in the next 1 hour and 30 minutes`;
     });
+
+    function removeItem(id) {
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         window.location.reload();
+        //     }
+        // };
+        // xhttp.open("POST", "/remove_cart", true);
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhttp.send(`SKU=${id}`);
+        let response = fetch("/remove_cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `SKU=${id}`,
+        }).then((response) => {
+            window.location.reload();
+        });
+    }
 </script>
 <section class="h-100 gradient-custom">
     <div class="container py-5">
@@ -54,7 +75,9 @@
                                 <p>
                                     <strong>SKU:</strong> {{ product.sku }}
                                 </p>
-                                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                <button 
+                                onclick="removeItem('{{ product.sku }}')"
+                                type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
                                     title="Remove item">
                                     <i class="fas fa-trash"></i>
                                 </button>
