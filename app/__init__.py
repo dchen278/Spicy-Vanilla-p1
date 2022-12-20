@@ -209,6 +209,8 @@ def register():
 @app.route('/cart', methods=["GET", "POST"])
 def cart_display():
     username = session.get('username', None)
+    if username is None:
+        return app.redirect('/login')
     users_db = sqlite3.connect(USER_DB_FILE)
     users_c = users_db.cursor()
     users_c.execute(

@@ -1,0 +1,12 @@
+.image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 0% !important;
+    background-color: #ffffff;
+    border: none
+  }
