@@ -10,8 +10,8 @@
             console.log(prices[i].innerText);
             total += parseFloat(prices[i].innerText.replace("$", ""));
         }
-        document.getElementById("total-amount").innerHTML = `<strong>$${total}</strong>`;
-
+        document.getElementById("total-amount").innerHTML = `<strong>$${total.toFixed(2)}</strong>`;
+        
         var today = new Date();
         var dd = String(today.getDate() + 1).padStart(2, "0");
         var mm = String(today.getMonth() + 1).padStart(2, "0");
