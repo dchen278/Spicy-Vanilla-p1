@@ -202,3 +202,12 @@ davidC -- 2022-12-20 04:00
 - used ip api to get user location and location
 - queried bestbuy api for all bestbuy stores within a 10 mile radius of the user location
 - utilized bing maps to display all stores with pushpins
+
+==============================================================
+jingF -- 2022-12-18 17:00
+- Added contact.html
+- Worked on products.html
+
+==============================================================
+jingF -- 2022-12-19 13:13
+- Worked on contact.html
