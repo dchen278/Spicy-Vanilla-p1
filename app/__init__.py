@@ -98,11 +98,6 @@ def logout():
     return app.redirect(app.url_for('login'))
 
 
-def getip():
-    ip = requests.get('https://api.ipify.org').text
-    return ip
-
-
 @app.route("/api/products/trending", methods=["GET"])
 def trending():
     response = requests.get(
@@ -110,6 +105,7 @@ def trending():
     )
     data = response.json()
     return data
+
 
 @app.route("/api/products/search", methods=["GET"])
 def search():
@@ -236,16 +232,33 @@ def searchbycategory(variable):
 
     return render_template("results.html", data=data)
 
+
 @app.route('/searchbysku/<variable>', methods=['GET', 'POST'])
 def searchbysku(variable):
     response = requests.get(
         f"https://api.bestbuy.com/v1/products(search={variable})?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=1"
     )
     print(response)
-    #Searchs and takes first response
+    # Searchs and takes first response
     product = response.json()["products"][0]
     return render_template("products.html", data=product)
-    #return render_template("products.html", data=data)#, name=name)
+    # return render_template("products.html", data=data)#, name=name)
+
+def getip():
+    ip = requests.get('https://api.ipify.org').text
+    print(f"User's IP Address: {ip}")
+    return ip
+
+
+@app.route('/stores', methods=['GET', 'POST'])
+def stores():
+    response = requests.get(
+        f"https://api.bestbuy.com/v1/stores(area(60606, 25))?apiKey={bestBuyKey}&format=json&show=storeId,storeType,name,city,distance,phone,region,postalCode&pageSize=10"
+    )
+    data = response.json()["stores"]
+    print(data)
+    return render_template("stores.html", data=data)
+
 
 @app.route('/add_cart', methods=["GET", "POST"])
 def add_to_cart():

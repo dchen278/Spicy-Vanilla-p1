@@ -193,3 +193,8 @@ matthewY -- 2022-12-19 13:13
 jeremyK -- 2022-12-19 22:46
 - created products.html page (users can now view product info on a separate page)
 - VERY minor format adjustments for the products.html page
+
+==============================================================
+davidC -- 2022-12-20 04:00
+- Added a new page for store locations (stores.html)
+- Integrate Bing Maps API instead of Radar API
