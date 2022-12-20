@@ -214,3 +214,8 @@ davidC -- 2022-12-20 04:00
 - utilized bing maps to display all stores with pushpins
 - added error message to login and register page
 - handle no cart items error
+
+==============================================================
+davidC -- 2022-12-20 12:20
+- Added new carts page for displaying all cart products
+- Handled exception when there is no username when accessing cart page
