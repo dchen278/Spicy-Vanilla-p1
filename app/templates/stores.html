@@ -18,29 +18,53 @@
         //Assign the infobox to a map instance.
         infobox.setMap(map);
 
-        //Create random locations in the map bounds.
-        var randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(
-          5,
-          map.getBounds()
-        );
+        // get store locations from /api/get_stores
+        fetch("/api/get_stores")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+              var pin = new Microsoft.Maps.Pushpin(
+                new Microsoft.Maps.Location(data[i].lat, data[i].lng)
+              );
 
-        console.log(randomLocations);
+              //Store some metadata with the pushpin.
+              pin.metadata = {
+                title: data[i].name,
+                description: data[i].address,
+              };
 
-        for (var i = 0; i < randomLocations.length; i++) {
-          var pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
+              //Add a click event handler to the pushpin.
+              Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
 
-          //Store some metadata with the pushpin.
-          pin.metadata = {
-            title: "Pin " + i,
-            description: "Discription for pin" + i,
-          };
+              //Add pushpin to the map.
+              map.entities.push(pin);
+            }
+          });
 
-          //Add a click event handler to the pushpin.
-          Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+        // //Create random locations in the map bounds.
+        // var randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(
+        //   5,
+        //   map.getBounds()
+        // );
 
-          //Add pushpin to the map.
-          map.entities.push(pin);
-        }
+        // console.log(randomLocations);
+
+        // for (var i = 0; i < randomLocations.length; i++) {
+        //   var pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
+
+        //   //Store some metadata with the pushpin.
+        //   pin.metadata = {
+        //     title: "Pin " + i,
+        //     description: "Discription for pin" + i,
+        //   };
+
+        //   //Add a click event handler to the pushpin.
+        //   Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+
+        //   //Add pushpin to the map.
+        //   map.entities.push(pin);
+        // }
       }
 
       function pushpinClicked(e) {
@@ -64,6 +88,27 @@
     ></script>
   </head>
   <body>
+    <div class="container-fluid py-2">
+      <h2 class="font-weight-light">
+        Bootstrap 5 Horizontal Scrolling Cards with Flexbox
+      </h2>
+      <div class="flex-col flex-nowrap">
+        <div class="card card-body">asd</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+        <div class="card card-body">Card</div>
+      </div>
+    </div>
     <div
       id="myMap"
       style="position: relative; width: 600px; height: 400px"

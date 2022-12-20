@@ -23,12 +23,18 @@ mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
 
 USER_DB_FILE = "users.db"
 
+# custom render_template function that adds the username to the template
+
+
+def render_template_with_username(template, **kwargs):
+    username = session.get('username', None)
+    print("username is " + str(username) + " in render_template_with_username")
+    return render_template(template, username=username, **kwargs)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # get the user's username from the session
-    username = session.get('username', None)
-    return render_template('index.html', username=username)
+    return render_template_with_username('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -142,7 +148,7 @@ def search_page():
     if response.status_code != 200:
         return app.redirect("/")
     data = response.json()["products"]
-    return render_template("results.html", data=data, query=query, page=page, username=username)
+    return render_template_with_username("results.html", data=data, query=query, page=page)
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -217,7 +223,7 @@ def cart_display():
         error = 'You have no items in your cart.'
     else:
         error = 'Please log in to add items to your cart.'
-    return render_template('cart.html', error=error, data=data, username=username)
+    return render_template_with_username('cart.html', error=error, data=data)
 
 
 @app.route('/searchbycategory/categoryID=<variable>', methods=['GET', 'POST'])
@@ -230,7 +236,7 @@ def searchbycategory(variable):
     # print(data)
     # print(products)
 
-    return render_template("results.html", data=data)
+    return render_template_with_username("results.html", data=data)
 
 
 @app.route('/searchbysku/<variable>', methods=['GET', 'POST'])
@@ -241,23 +247,40 @@ def searchbysku(variable):
     print(response)
     # Searchs and takes first response
     product = response.json()["products"][0]
-    return render_template("products.html", data=product)
+    return render_template_with_username("products.html", data=product)
     # return render_template("products.html", data=data)#, name=name)
 
+
 def getip():
-    ip = requests.get('https://api.ipify.org').text
-    print(f"User's IP Address: {ip}")
+    # if the addr is 127.0.0.1 then request for the ip
+    if request.remote_addr == "127.0.0.1":
+        ip = requests.get("https://api.ipify.org").text
+    else:
+        ip = request.remote_addr
     return ip
+
+
+def get_ip_data(ip):
+    response = requests.get(f"http://ip-api.com/json/{ip}")
+    data = response.json()
+    print(data)
+    return data
 
 
 @app.route('/stores', methods=['GET', 'POST'])
 def stores():
+    return render_template_with_username("stores.html")
+
+
+@app.route('/api/get_stores', methods=['GET'])
+def get_stores():
+    ip_data = get_ip_data(getip())
     response = requests.get(
-        f"https://api.bestbuy.com/v1/stores(area(60606, 25))?apiKey={bestBuyKey}&format=json&show=storeId,storeType,name,city,distance,phone,region,postalCode&pageSize=10"
+        f"https://api.bestbuy.com/v1/stores(area({ip_data['lat']},{ip_data['lon']},10))?apiKey={bestBuyKey}&format=json&pageSize=10&show=storeId,storeType,name,city,distance,phone,region,postalCode,storeType,lat,lng"
     )
     data = response.json()["stores"]
     print(data)
-    return render_template("stores.html", data=data)
+    return jsonify(data)
 
 
 @app.route('/add_cart', methods=["GET", "POST"])
