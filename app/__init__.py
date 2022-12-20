@@ -318,7 +318,6 @@ def add_to_cart():
 
     return app.redirect(app.url_for('cart_display'))
 
-<<<<<<< HEAD
 @app.route("/update_quantity", methods=["GET", "POST"])
 def update_quantity():
     if request.method == "POST" and 'username' in session:
@@ -373,12 +372,6 @@ def remove_from_cart():
         users_db.commit()
     return Response(status=200)
     # return app.redirect(app.url_for('cart_display'))
-=======
-@app.route('/remove_cart', methods=["GET", "POST"])
-def remove_from_cart():
-    if request.method == "POST" and 'username' in session:
-        return 0
->>>>>>> 29b1fde5942375731747238c8fd54738838acb5d
 
 
 if __name__ == "__main__":  # false if this file imported as module
