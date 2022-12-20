@@ -161,6 +161,12 @@ matthewY -- 2022-12-17 5:03
 
 ==============================================================
 
+jingF -- 2022-12-18 17:00
+- Added contact.html
+- Worked on products.html
+
+==============================================================
+
 jeremyK -- 2022-12-19 1:41
 - added all categories to base.html along with their respective pictures
 - each category call now returns 20-100 items of that category (depending on pageSize)
@@ -195,6 +201,10 @@ jeremyK -- 2022-12-19 22:46
 - VERY minor format adjustments for the products.html page
 
 ==============================================================
+jingF -- 2022-12-19 13:13
+- Worked on contact.html
+
+==============================================================
 davidC -- 2022-12-20 04:00
 - Added a new page for store locations (stores.html)
 - Integrate Bing Maps API instead of Radar API
@@ -202,12 +212,5 @@ davidC -- 2022-12-20 04:00
 - used ip api to get user location and location
 - queried bestbuy api for all bestbuy stores within a 10 mile radius of the user location
 - utilized bing maps to display all stores with pushpins
-
-==============================================================
-jingF -- 2022-12-18 17:00
-- Added contact.html
-- Worked on products.html
-
-==============================================================
-jingF -- 2022-12-19 13:13
-- Worked on contact.html
+- added error message to login and register page
+- handle no cart items error

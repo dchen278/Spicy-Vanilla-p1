@@ -87,9 +87,9 @@ def login():
                 session['username'] = username
                 return app.redirect('/')
             else:
-                error = "incorrect password"
+                error = "Incorrect password"
         else:
-            error = "username not found"
+            error = "Username not found"
 
     return render_template('login.html', error_message=error)
 
@@ -214,6 +214,10 @@ def cart_display():
     users_c.execute(
         "SELECT cart FROM order_history WHERE username=?", (username,))
     full_cart = users_c.fetchone()[0]
+
+    if full_cart is None:
+        full_cart = ""
+        return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
 
     if 'username' in session:
         response = requests.get(

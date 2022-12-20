@@ -8,198 +8,164 @@ Spicy Vanilla: David Chen, Jing Feng, Jeremy Kwok, and Matthew Yee
 SoftDev
 -->
 <html>
-  <head>
-    <title>BetterBuy Register</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/339055163d.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/static/css/index.css" />
-    <link rel="stylesheet" href="/static/css/login.css" />
-    <script>
-      function showPassword() {
-        var x = document.getElementById("password");
-        var y = document.getElementById("confirmPassword");
-        if (x.type === "password" && y.type === "password") {
-          x.type = "text";
-          y.type = "text";
-        } else {
-          x.type = "password";
-          y.type = "password";
-        }
+
+<head>
+  <title>BetterBuy Register</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/339055163d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/static/css/index.css" />
+  <link rel="stylesheet" href="/static/css/login.css" />
+  <script>
+    function showPassword() {
+      var x = document.getElementById("password");
+      var y = document.getElementById("confirmPassword");
+      if (x.type === "password" && y.type === "password") {
+        x.type = "text";
+        y.type = "text";
+      } else {
+        x.type = "password";
+        y.type = "password";
       }
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("password-switch")
-          .addEventListener("click", showPassword);
-        document
-          .getElementById("return-btn")
-          .addEventListener("click", function () {
-            history.back();
-          });
-      });
-    </script>
-  </head>
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("password-switch")
+        .addEventListener("click", showPassword);
+      document
+        .getElementById("return-btn")
+        .addEventListener("click", function () {
+          history.back();
+        });
+    });
+  </script>
+</head>
 
-  <body style="background: #f0f2f4">
-    <!-- Start Navbar -->
-    <nav class="navbar" style="background-color: #0046be">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img
-            src="/static/images/logo.png"
-            alt="Logo"
-            width="120px"
-            class="d-inline-block align-text-top"
-          />
-        </a>
+<body style="background: #f0f2f4">
+  <!-- Start Navbar -->
+  <nav class="navbar" style="background-color: #0046be">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/static/images/logo.png" alt="Logo" width="120px" class="d-inline-block align-text-top" />
+      </a>
 
-        <div>
-          <button id="return-btn" class="btn btn-outline-none text-white">
-            Return to previous page
-          </button>
-        </div>
-        <!--End navbar toggler-->
+      <div>
+        <button id="return-btn" class="btn btn-outline-none text-white">
+          Return to previous page
+        </button>
       </div>
-    </nav>
-    <!-- End Navbar -->
+      <!--End navbar toggler-->
+    </div>
+  </nav>
+  <!-- End Navbar -->
 
-    <!-- Start centered login form -->
-    <div
-      class="container"
-      style="
+  <!-- Start centered login form -->
+  <div class="container" style="
         background-color: white;
         border-radius: 5px;
         padding: 20px;
         margin-top: 5%;
         width: 40rem;
-      "
-    >
-      <h3
-        style="
+      ">
+    <h3 style="
           text-align: center;
           font-weight: bold;
           font-size: 30px;
           margin-bottom: 20px;
-        "
-      >
-        Create an account
-      </h3>
+        ">
+      Create an account
+    </h3>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <form method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control login-input" id="username" name="username" placeholder="Username" />
+          </div>
+
+          <!-- Align div to right most -->
+          <div class="form-group text-end" style="margin-bottom: 10px">
+            <label class="switch">
+              <input id="password-switch" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <label>Show Passwords</label>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control login-input" id="password" name="password"
+              placeholder="Password (8 characters minimum)" />
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control login-input" id="confirmPassword" name="confirmPassword"
+              placeholder="Confirm Password" />
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 10px">
+            Create An Account
+          </button>
+
+          <!-- Keep me signed in checkbox-->
+          <div class="form-check text-start" style="margin-bottom: 10px">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <label class="form-check-label" for="flexCheckDefault">
+              Keep me signed in
+            </label>
+          </div>
+          <span style="
+              color: red;
+              font-size: 16px;
+              text-align: center;
+              display: block;
+              font-weight: bold;
+              margin-bottom: 10px;
+            ">
+            {{error_message}}
+          </span>
+          <div class="text-start">
+            <p>
+              By continuing you agree to our
+              <a href="#">Terms and Conditions</a>, our
+              <a href="#">Privacy Policy</a>, and the
+              <a href="#">My Best Buy® Program Terms</a>.
+            </p>
+          </div>
+          <div class="divider">
+            <hr class="hr-text" data-content="OR" />
+          </div>
+          <div class="text-start">
+            <p>
+              Already have an account?
+              <a href="/login">Sign in</a>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+  <!-- End centered login form -->
+
+  <!-- Start Footer -->
+  <footer class="footer">
+    <div class="container">
+      <!--Terms and Conditions Privacy Interest-Based Ads links-->
       <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-          <form method="POST">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control login-input"
-                id="username"
-                name="username"
-                placeholder="Username"
-              />
-            </div>
-
-            <!-- Align div to right most -->
-            <div class="form-group text-end" style="margin-bottom: 10px">
-              <label class="switch">
-                <input id="password-switch" type="checkbox" />
-                <span class="slider round"></span>
-              </label>
-              <label>Show Passwords</label>
-            </div>
-            <div class="form-group">
-              <input
-                type="password"
-                class="form-control login-input"
-                id="password"
-                name="password"
-                placeholder="Password (8 characters minimum)"
-              />
-            </div>
-
-            <div class="form-group">
-              <input
-                type="password"
-                class="form-control login-input"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-              />
-            </div>
-
-            <button
-              type="submit"
-              class="btn btn-primary"
-              style="width: 100%; margin-bottom: 10px"
-            >
-              Create An Account
-            </button>
-
-            <!-- Keep me signed in checkbox-->
-            <div class="form-check text-start" style="margin-bottom: 10px">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Keep me signed in
-              </label>
-            </div>
-
-            <div class="text-start">
-              <p>
-                By continuing you agree to our
-                <a href="#">Terms and Conditions</a>, our
-                <a href="#">Privacy Policy</a>, and the
-                <a href="#">My Best Buy® Program Terms</a>.
-              </p>
-            </div>
-            <div class="divider">
-              <hr class="hr-text" data-content="OR" />
-            </div>
-            <div class="text-start">
-              <p>
-                Already have an account?
-                <a href="/login">Sign in</a>
-              </p>
-            </div>
-          </form>
+        <div class="col-sm-6">
+          <a href="#">Terms and Conditions</a>
+          <span class="divider">|</span>
+          <a href="#">Privacy</a>
+          <span class="divider">|</span>
+          <a href="#">Interest-Based Ads</a>
         </div>
-        <div class="col-sm-2"></div>
       </div>
     </div>
-    <!-- End centered login form -->
+  </footer>
+</body>
 
-    <!-- Start Footer -->
-    <footer class="footer">
-      <div class="container">
-        <!--Terms and Conditions Privacy Interest-Based Ads links-->
-        <div class="row">
-          <div class="col-sm-6">
-            <a href="#">Terms and Conditions</a>
-            <span class="divider">|</span>
-            <a href="#">Privacy</a>
-            <span class="divider">|</span>
-            <a href="#">Interest-Based Ads</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"
-  ></script>
 </html>
