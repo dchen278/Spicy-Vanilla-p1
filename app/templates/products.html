@@ -1,12 +1,59 @@
 {% extends 'base.html' %} {% block main %}
 {% if data %}
+<!-- row with side bar for filters and results; products are displayed as cards -->
 
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-9">
+            <div class="row">
+                <div class="row bg-white border rounded">
+                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
+                            src="{{ data.image }}"></div>
+                    <div class="col-md-6 mt-1">
+                        <h5>
+                            <a href="/product/{{ data.sku }}">{{ data.name }}</a>
+                        </h5>
+                        <div class="d-flex flex-row">
+                            <span class="text-secondary" style="margin-right: 5px;">
+                                {{ data.customerReviewAverage }} Stars
+                            </span>
+
+                            <span>
+                                {{ data.customerReviewCount }} Customer Reviews
+                            </span>
+                        </div>
+                    </div>
+                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                        <div class="d-flex flex-row align-items-center">
+                            <h4 class="mr-1">$
+                                {{ data.salePrice }}
+                            </h4>
+                        </div>
+                        <p>SKU: {{ data.sku }}</p>
+                        <h6 class="text-success">Free shipping</h6>
+                        <div class="d-flex flex-column mt-4">
+                                <form method="POST" action="/searchbysku/{{ data.sku }}"></form>
+                                <form method="POST" action="/add_cart">
+                                <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value="{{ data.sku }}" 
+                                >Add to wishlist</button>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
 <div class="container">
     <div class="row">
-      <div class="col">
-        <h1>{{ product.name }}</h1>
-      </div>
-      <div class="col">
-        <h1>...</h1>
-      </div>
+        <div class="col-12">
+            <h1>Results</h1>
+            <p>No results found.</p>
+        </div>
+    </div>
+</div>
+{% endif %}
 
+{% endblock %}

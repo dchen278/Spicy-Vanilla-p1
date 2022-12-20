@@ -189,3 +189,7 @@ matthewY -- 2022-12-19 13:13
 - got display for cart items working
 
 ==============================================================
+
+jeremyK -- 2022-12-19 22:46
+- created products.html page (users can now view product info on a separate page)
+- VERY minor format adjustments for the products.html page

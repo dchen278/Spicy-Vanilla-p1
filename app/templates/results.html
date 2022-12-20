@@ -51,9 +51,12 @@
                         <p>SKU: {{ product.sku }}</p>
                         <h6 class="text-success">Free shipping</h6>
                         <div class="d-flex flex-column mt-4">
-                            <button class="btn btn-primary btn-sm"
-                                type="button" onclick="{{ url_for('searchbysku', variable= '{{product.sku}}' ) }}">Details</button>
-                                
+                            <a href="{{ url_for('searchbysku', variable=product.sku ) }}">
+                                <button class="btn btn-primary btn-sm"
+                                    type="button">Details
+                                </button>
+                            </a>
+                                <form method="POST" action="/searchbysku/{{ product.sku }}"></form>
                                 <form method="POST" action="/add_cart">
                                 <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value="{{ product.sku }}" 
                                 >Add to wishlist</button>
