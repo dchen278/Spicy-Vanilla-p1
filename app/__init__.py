@@ -12,6 +12,7 @@ import os
 import json
 import datetime
 from db import get_user_by_username, add_user, check_username, get_orders, get_order, get_users
+import random
 
 app = Flask(__name__)  # create Flask object
 # Set the secret key to some random bytes. Keep this really secret!
@@ -392,6 +393,10 @@ def add_product_to_cart(name, quantity, sku, price):
     return app.redirect(app.url_for('cart_display'))
 
 
+# temp workaround before demo
+mg = "c1e87254d77f00429799f590812835bb-" + "eb38c18d-" + "a1f3e1d8"
+
+
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
     if request.method == "POST" and 'username' in session:
@@ -400,19 +405,26 @@ def checkout():
         email = request.form['email']
         name = f"{request.form['firstName']} {request.form['lastName']}"
         print(name)
+        date = datetime.datetime.now().strftime("%y-%m-%d")
+        quantity = request.form.get('quantity', 1)
+        sku = request.form['SKU']
+        price = request.form['price']
 
         # handle checkout process and send email confirmation
         # get the user's cart
         req = requests.post(
             " https://api.mailgun.net/v3/mg.betterbuy.cf/messages",
-            auth=("api", "c1e87254d77f00429799f590812835bb-eb38c18d-ca4ccc3e"),
+            auth=("api", mg),
             data={"from": "BetterBuy <orders@betterbuy.cf>",
                   "to": f"{name} <{email}>",
                   "subject": f"Order Confirmation for {name}",
                   "text": f"Thank you for your order, {name}! Your order will be shipped to {email}."
                   })
         print(req.text)
-        return app.redirect(app.url_for('cart_display'))
+        order_num = random.randint(1000000000, 9999999999)
+        c.execute("insert into orders values(?, ?, ?, ?, ?, ?)",
+                  (username, name, date, quantity, sku, price))
+        return render_template_with_username('checkout.html', order_number=order_num)
     else:
         username = session.get('username', None)
         if username is None:
@@ -442,7 +454,7 @@ def checkout():
         for product in data:
             totalPrice += product["salePrice"]
         print(data)
-        return render_template_with_username('checkout.html', order=data, total=totalPrice)
+        return render_template_with_username('checkout.html', order=data, total=totalPrice, SKU=full_cart)
 
 
 if __name__ == "__main__":  # false if this file imported as module

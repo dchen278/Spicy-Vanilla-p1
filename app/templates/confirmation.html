@@ -1,6 +1,12 @@
-{% extends 'base.html' %} {% block main %}
-{% if data %}
+{% extends 'base.html' %} {% block main %} {% if data %}
 
-  {% endif %}
-
-  {% endblock %}
+<div class="container m-5">
+  <div class="row">
+    <div class="col-12">
+      <h1>Confirmation</h1>
+      <h2>{{ order_number }}</h2>
+      <p>Thank you for your purchase!</p>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock %}

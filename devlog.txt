@@ -235,3 +235,4 @@ davidC -- 2022-12-21 09:10
 - Implemented route for updating cart quantity
 - Send confirmation email to user when order is placed
 - Implemented mailgun api for sending emails
+- New checkout logic
