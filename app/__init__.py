@@ -374,8 +374,8 @@ def remove_from_cart():
         users_c.execute(
             "UPDATE order_history SET cart=? WHERE username=?", (full_cart, username,))
         users_db.commit()
-    return Response(status=200)
-    # return app.redirect(app.url_for('cart_display'))
+    #return Response(status=200)
+    return app.redirect(app.url_for('cart_display'))
 
 @app.route('/add_product_to_cart', methods=["GET", "POST"])
 def add_product_to_cart(name, quantity, sku, price):

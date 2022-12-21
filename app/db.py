@@ -8,6 +8,8 @@ c = db.cursor()  # facilitate db ops -- you will use cursor to trigger db events
 c.execute("CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, password TEXT)")
 # execute with relation to users table
 c.execute("CREATE TABLE IF NOT EXISTS order_history(username TEXT PRIMARY KEY, cart, history)")
+c.execute("CREATE TABLE IF NOT EXISTS cart(orderID INT PRIMARY KEY, name TEXT, sku TEXT, date TEXT, price TEXT, status TEXT)")
+
 c.execute("CREATE TABLE IF NOT EXISTS cart(username TEXT, date TEXT, productName TEXT, productSKU TEXT, productPrice REAL)")
 # TODO work this out later
 
