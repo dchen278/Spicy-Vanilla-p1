@@ -23,6 +23,7 @@ dirname = os.path.dirname(__file__)
 bestBuyKey = open(os.path.join(dirname, "keys/key_bestbuy.txt")).read()
 radarKey = open(os.path.join(dirname, "keys/key_radar.txt")).read()
 mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
+mg_api_key = open(os.path.join(dirname, "keys/key_mailgun.txt")).read()
 
 USER_DB_FILE = "users.db"
 CART_DB_FILE = "cart.db"
@@ -393,10 +394,6 @@ def add_product_to_cart(name, quantity, sku, price):
     return app.redirect(app.url_for('cart_display'))
 
 
-# temp workaround before demo
-mg = "c1e87254d77f00429799f590812835bb-" + "eb38c18d-" + "a1f3e1d8"
-
-
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
     if request.method == "POST" and 'username' in session:
@@ -414,7 +411,7 @@ def checkout():
         # get the user's cart
         req = requests.post(
             " https://api.mailgun.net/v3/mg.betterbuy.cf/messages",
-            auth=("api", mg),
+            auth=("api", mg_api_key),
             data={"from": "BetterBuy <orders@betterbuy.cf>",
                   "to": f"{name} <{email}>",
                   "subject": f"Order Confirmation for {name}",
