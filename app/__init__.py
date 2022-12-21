@@ -393,36 +393,56 @@ def add_product_to_cart(name, quantity, sku, price):
 
 
 @app.route("/checkout", methods=["GET", "POST"])
-def new_checkout():
-    username = session.get('username', None)
-    if username is None:
-        return app.redirect('/login')
-    users_db = sqlite3.connect(USER_DB_FILE)
-    users_c = users_db.cursor()
-    users_c.execute(
-        "SELECT cart FROM order_history WHERE username=?", (username,))
-    full_cart = users_c.fetchone()[0]
+def checkout():
+    if request.method == "POST" and 'username' in session:
+        username = session['username']
+        # get the user's cart
+        email = request.form['email']
+        name = f"{request.form['firstName']} {request.form['lastName']}"
+        print(name)
 
-    if full_cart is None:
-        full_cart = ""
-        return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
-
-    if 'username' in session:
-        response = requests.get(
-            f"https://api.bestbuy.com/v1/products(sku in ({full_cart}))?apiKey={bestBuyKey}&format=json"
-        )
-        if response.status_code != 200:
-            return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
-        data = response.json()["products"]
-        error = 'You have no items in your cart.'
+        # handle checkout process and send email confirmation
+        # get the user's cart
+        req = requests.post(
+            " https://api.mailgun.net/v3/mg.betterbuy.cf/messages",
+            auth=("api", "c1e87254d77f00429799f590812835bb-eb38c18d-ca4ccc3e"),
+            data={"from": "BetterBuy <orders@betterbuy.cf>",
+                  "to": f"{name} <{email}>",
+                  "subject": f"Order Confirmation for {name}",
+                  "text": f"Thank you for your order, {name}! Your order will be shipped to {email}."
+                  })
+        print(req.text)
+        return app.redirect(app.url_for('cart_display'))
     else:
-        error = 'Please log in to add items to your cart.'
-    # add  prodcut prices
-    totalPrice = 0
-    for product in data:
-        totalPrice += product["salePrice"]
-    print(data)
-    return render_template_with_username('checkout.html', order=data, total=totalPrice)
+        username = session.get('username', None)
+        if username is None:
+            return app.redirect('/login')
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+        users_c.execute(
+            "SELECT cart FROM order_history WHERE username=?", (username,))
+        full_cart = users_c.fetchone()[0]
+
+        if full_cart is None:
+            full_cart = ""
+            return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
+
+        if 'username' in session:
+            response = requests.get(
+                f"https://api.bestbuy.com/v1/products(sku in ({full_cart}))?apiKey={bestBuyKey}&format=json"
+            )
+            if response.status_code != 200:
+                return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
+            data = response.json()["products"]
+            error = 'You have no items in your cart.'
+        else:
+            error = 'Please log in to add items to your cart.'
+        # add  prodcut prices
+        totalPrice = 0
+        for product in data:
+            totalPrice += product["salePrice"]
+        print(data)
+        return render_template_with_username('checkout.html', order=data, total=totalPrice)
 
 
 if __name__ == "__main__":  # false if this file imported as module

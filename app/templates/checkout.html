@@ -30,7 +30,12 @@
   </div>
   <div class="col-md-6 col-lg-7">
     <h4 class="mb-3">Billing address</h4>
-    <form class="needs-validation" novalidate="">
+    <form
+      class="needs-validation"
+      novalidate=""
+      action="/checkout"
+      method="POST"
+    >
       <div class="row g-3">
         <div class="col-sm-6">
           <label for="firstName" class="form-label">First name</label>
@@ -38,6 +43,7 @@
             type="text"
             class="form-control"
             id="firstName"
+            name="firstName"
             placeholder=""
             value=""
             required=""
@@ -53,6 +59,7 @@
             id="lastName"
             placeholder=""
             value=""
+            name="lastName"
             required=""
           />
           <div class="invalid-feedback">Valid last name is required.</div>
@@ -65,6 +72,7 @@
           <input
             type="email"
             class="form-control"
+            name="email"
             id="email"
             placeholder="you@example.com"
           />
