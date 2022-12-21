@@ -25,7 +25,8 @@ mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
 
 USER_DB_FILE = "users.db"
 CART_DB_FILE = "cart.db"
-db = sqlite3.connect(USER_DB_FILE, check_same_thread=False) #open if file exists, otherwise create
+# open if file exists, otherwise create
+db = sqlite3.connect(USER_DB_FILE, check_same_thread=False)
 c = db.cursor()
 
 # custom render_template function that adds the username to the template
@@ -245,7 +246,7 @@ def searchbycategory(variable):
         # pageSize=[number] allows you to change how many products you want in the json file returned
         f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
     data = response.json()["products"]
-    #products = data["products"]
+    # products = data["products"]
     # print(data)
     # print(products)
 
@@ -322,6 +323,7 @@ def add_to_cart():
 
     return app.redirect(app.url_for('cart_display'))
 
+
 @app.route("/update_quantity", methods=["GET", "POST"])
 def update_quantity():
     if request.method == "POST" and 'username' in session:
@@ -351,6 +353,7 @@ def update_quantity():
 
     return app.redirect(app.url_for('cart_display'))
 
+
 @app.route('/remove_cart', methods=["GET", "POST"])
 def remove_from_cart():
     if request.method == "POST" and 'username' in session:
@@ -374,29 +377,52 @@ def remove_from_cart():
         users_c.execute(
             "UPDATE order_history SET cart=? WHERE username=?", (full_cart, username,))
         users_db.commit()
-    #return Response(status=200)
+    # return Response(status=200)
     return app.redirect(app.url_for('cart_display'))
+
 
 @app.route('/add_product_to_cart', methods=["GET", "POST"])
 def add_product_to_cart(name, quantity, sku, price):
     username = session['username']
     date = datetime.datetime.now().strftime("%y-%m-%d")
-    #going to temporarily add the cart items into user.db
-    c.execute("insert into orders values(?, ?, ?, ?, ?, ?)", (username, name, date, quantity, sku, price))
+    # going to temporarily add the cart items into user.db
+    c.execute("insert into orders values(?, ?, ?, ?, ?, ?)",
+              (username, name, date, quantity, sku, price))
     print("added to cart")
     return app.redirect(app.url_for('cart_display'))
 
-@app.route('/checkout', methods=["GET", "POST"])
-def checkout():
-    username = session['username']
+
+@app.route("/checkout", methods=["GET", "POST"])
+def new_checkout():
+    username = session.get('username', None)
+    if username is None:
+        return app.redirect('/login')
+    users_db = sqlite3.connect(USER_DB_FILE)
+    users_c = users_db.cursor()
+    users_c.execute(
+        "SELECT cart FROM order_history WHERE username=?", (username,))
+    full_cart = users_c.fetchone()[0]
+
+    if full_cart is None:
+        full_cart = ""
+        return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
+
+    if 'username' in session:
+        response = requests.get(
+            f"https://api.bestbuy.com/v1/products(sku in ({full_cart}))?apiKey={bestBuyKey}&format=json"
+        )
+        if response.status_code != 200:
+            return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
+        data = response.json()["products"]
+        error = 'You have no items in your cart.'
+    else:
+        error = 'Please log in to add items to your cart.'
+    # add  prodcut prices
     totalPrice = 0
-    c.execute(f"select * from orders where username=?", (username,))
-    results = c.fetchall()
-    c.execute(f"select productPrice from orders where username=?", (username,))
-    total = c.fetchall()
-    for productPrice in total:
-        totalPrice += productPrice
-    return render_template("checkout.html", order = results, total = totalPrice)
+    for product in data:
+        totalPrice += product["salePrice"]
+    print(data)
+    return render_template_with_username('checkout.html', order=data, total=totalPrice)
 
 
 if __name__ == "__main__":  # false if this file imported as module

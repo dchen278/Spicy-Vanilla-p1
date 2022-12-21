@@ -228,3 +228,8 @@ jeremyK -- 2022-12-21-0:19
 - Added checkout.html
 - Added new functions for users to create a table that stores their cart items along with their respective product details
 - Users can now add items to cart
+
+==============================================================
+davidC -- 2022-12-21 09:10
+- Revamped checkout page
+- Implemented route for updating cart quantity
