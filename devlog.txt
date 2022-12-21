@@ -216,7 +216,15 @@ davidC -- 2022-12-20 04:00
 - handle no cart items error
 
 ==============================================================
+
 davidC -- 2022-12-20 12:20
 - Added new carts page for displaying all cart products
 - Handled exception when there is no username when accessing cart page
 - implemented remove from cart functionality
+
+==============================================================
+
+jeremyK -- 2022-12-21-0:19
+- Added checkout.html
+- Added new functions for users to create a table that stores their cart items along with their respective product details
+- Users can now add items to cart

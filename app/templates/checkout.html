@@ -1,5 +1,52 @@
 {% extends 'base.html' %} {% block main %}
-{% if data %}
+{% if order %}
+    {% for product in order %}
+
+    {% endif %}
+
+    <h3>
+        Price: {{ total }}
+    </h3>
+
+    <h2>Shipping Address</h2>
+            <form action="/address" method="POST">
+                <div class="form-group mb-3">
+                    <label for="price">Street Address</label>
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Street Address">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="brand">City</label>
+                    <input type="text" class="form-control" name="brand" id="brand" placeholder="City">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="category">State</label>
+                    <input type="text" class="form-control" name="category" id="category" placeholder="State">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="category">Zip Code</label>
+                    <input type="text" class="form-control" name="category" id="category" placeholder="Zip Code">
+                </div>
+            </form>
+    
+    <br>
+    <h3>
+        How will you be paying?
+    </h3>
+    <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">Credit/Debit Card
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">Paypal
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio" disabled>In-Store
+        </label>
+      </div>
 
 {% endif %}
 

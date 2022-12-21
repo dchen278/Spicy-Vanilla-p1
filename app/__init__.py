@@ -10,6 +10,7 @@ import sqlite3
 import requests
 import os
 import json
+import datetime
 from db import get_user_by_username, add_user, check_username, get_orders, get_order, get_users
 
 app = Flask(__name__)  # create Flask object
@@ -23,6 +24,9 @@ radarKey = open(os.path.join(dirname, "keys/key_radar.txt")).read()
 mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
 
 USER_DB_FILE = "users.db"
+CART_DB_FILE = "cart.db"
+db = sqlite3.connect(USER_DB_FILE, check_same_thread=False) #open if file exists, otherwise create
+c = db.cursor()
 
 # custom render_template function that adds the username to the template
 
@@ -372,6 +376,23 @@ def remove_from_cart():
         users_db.commit()
     return Response(status=200)
     # return app.redirect(app.url_for('cart_display'))
+
+@app.route('/add_product_to_cart', methods=["GET", "POST"])
+def add_product_to_cart(name, quantity, sku, price):
+    name = session['username']
+    date = datetime.datetime.now().strftime("%y-%m-%d")
+    #going to temporarily add the cart items into user.db
+    c.execute("insert into cart values(?, ?, ?, ?, ?)", (name, date, quantity, sku, price))
+    print("added to cart")
+
+@app.route('/checkout', methods=["GET", "POST"])
+def checkout():
+    username = session['username']
+    c.execute(f"select * from cart where username='{username}';")
+    results = c.fetchall()
+    c.execute(f"select SUM(price) from cart where username='{username}';")
+    total = c.fetchone()
+    return render_template("checkout.html", order = results, total = total)
 
 
 if __name__ == "__main__":  # false if this file imported as module

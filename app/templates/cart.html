@@ -75,14 +75,12 @@
                                 <p>
                                     <strong>SKU:</strong> {{ product.sku }}
                                 </p>
-<<<<<<< HEAD
                                 <button 
                                 onclick="removeItem('{{ product.sku }}')"
-                                type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-=======
+                                type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip">
+                                </button>
                                 <form method="POST" action="/remove_cart">
                                 <button name="SKU" value="{{ product.sku }}" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
->>>>>>> 29b1fde5942375731747238c8fd54738838acb5d
                                     title="Remove item">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -190,10 +188,11 @@
                                     </strong></span>
                             </li>
                         </ul>
-
-                        <button type="button" class="btn btn-primary btn-lg btn-block">
-                            Go to checkout
-                        </button>
+                        <a href="{{url_for('checkout')">
+                            <button type="button" class="btn btn-primary btn-lg btn-block">
+                                Go to checkout
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -58,8 +58,10 @@
                             </a>
                                 <form method="POST" action="/searchbysku/{{ product.sku }}"></form>
                                 <form method="POST" action="/add_cart">
-                                <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value="{{ product.sku }}" 
-                                >Add to Cart</button>
+                                <a href="{{ url_for('add_to_cart', name=product.name, quantity=1, sku=product.sku, price=product.salePrice)}}">
+                                    <button name="SKU" class="btn btn-outline-primary btn-sm mt-2" value="{{ product.sku }}" 
+                                    >Add to Cart</button>
+                                </a>
                                 </form>
                             </div>
                     </div>
