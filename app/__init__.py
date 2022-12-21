@@ -379,20 +379,24 @@ def remove_from_cart():
 
 @app.route('/add_product_to_cart', methods=["GET", "POST"])
 def add_product_to_cart(name, quantity, sku, price):
-    name = session['username']
+    username = session['username']
     date = datetime.datetime.now().strftime("%y-%m-%d")
     #going to temporarily add the cart items into user.db
-    c.execute("insert into cart values(?, ?, ?, ?, ?)", (name, date, quantity, sku, price))
+    c.execute("insert into orders values(?, ?, ?, ?, ?, ?)", (username, name, date, quantity, sku, price))
     print("added to cart")
+    return app.redirect(app.url_for('cart_display'))
 
 @app.route('/checkout', methods=["GET", "POST"])
 def checkout():
     username = session['username']
-    c.execute(f"select * from cart where username='{username}';")
+    totalPrice = 0
+    c.execute(f"select * from orders where username=?", (username,))
     results = c.fetchall()
-    c.execute(f"select SUM(price) from cart where username='{username}';")
-    total = c.fetchone()
-    return render_template("checkout.html", order = results, total = total)
+    c.execute(f"select productPrice from orders where username=?", (username,))
+    total = c.fetchall()
+    for productPrice in total:
+        totalPrice += productPrice
+    return render_template("checkout.html", order = results, total = totalPrice)
 
 
 if __name__ == "__main__":  # false if this file imported as module

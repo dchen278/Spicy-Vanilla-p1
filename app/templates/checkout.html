@@ -1,8 +1,45 @@
 {% extends 'base.html' %} {% block main %}
 {% if order %}
     {% for product in order %}
+    <div class="row bg-white border rounded">
+      <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
+              src="{{ product.image }}"></div>
+      <div class="col-md-6 mt-1">
+          <h5>
+              <a href="/product/{{ product.sku }}">{{ product.name }}</a>
+          </h5>
+          <div class="d-flex flex-row">
+              <span class="text-secondary" style="margin-right: 5px;">
+                  {{ product.customerReviewAverage }} Stars
+              </span>
 
-    {% endif %}
+              <span>
+                  {{ product.customerReviewCount }} Customer Reviews
+              </span>
+          </div>
+      </div>
+      <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+          <div class="d-flex flex-row align-items-center">
+              <h4 class="mr-1">$
+                  {{ product.salePrice }}
+              </h4>
+          </div>
+          <p>SKU: {{ product.sku }}</p>
+          <h6 class="text-success">Free shipping</h6>
+          <div class="d-flex flex-column mt-4">
+              <a href="{{ url_for('searchbysku', variable=product.sku ) }}">
+                  <button class="btn btn-primary btn-sm"
+                      type="button">Details
+                  </button>
+              </a>
+                  <form method="POST" action="/searchbysku/{{ product.sku }}"></form>
+                  <form method="POST" action="/add_cart">
+                  </form>
+              </div>
+      </div>
+  </div>
+  {% endfor %}
+
 
     <h3>
         Price: {{ total }}
