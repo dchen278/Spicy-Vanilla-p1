@@ -258,3 +258,4 @@ davidC -- 2022-12-21 09:10
 - Fixed db error
 - Made search results more relevant (ex ipad should return ipads and not applecare plans)
 - Fixed stores page; allowed for JSON to be passed in to the script
+- Display preexisting query in search bar
