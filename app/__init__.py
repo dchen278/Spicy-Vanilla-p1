@@ -307,7 +307,8 @@ def get_ip_data(ip):
 
 @app.route('/stores', methods=['GET', 'POST'])
 def stores():
-    return render_template_with_username("stores.html")
+    ip_data = get_ip_data(getip())
+    return render_template_with_username("stores.html", location=ip_data['zip'], stores=get_stores())
 
 
 @app.route('/api/get_stores', methods=['GET'])
