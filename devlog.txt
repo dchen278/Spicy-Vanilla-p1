@@ -236,3 +236,10 @@ davidC -- 2022-12-21 09:10
 - Send confirmation email to user when order is placed
 - Implemented mailgun api for sending emails
 - New checkout logic
+
+==============================================================
+
+jeremyK -- 2022-12-22 02:04
+- Added respective links/redirects to navbar
+- Redirected search result names to their respective product pages
+- Added product's regular price below product sale price

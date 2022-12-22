@@ -23,7 +23,7 @@ dirname = os.path.dirname(__file__)
 bestBuyKey = open(os.path.join(dirname, "keys/key_bestbuy.txt")).read()
 radarKey = open(os.path.join(dirname, "keys/key_radar.txt")).read()
 mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
-mg_api_key = open(os.path.join(dirname, "keys/key_mailgun.txt")).read()
+#mg_api_key = open(os.path.join(dirname, "keys/key_mailgun.txt")).read()
 
 USER_DB_FILE = "users.db"
 CART_DB_FILE = "cart.db"
@@ -254,6 +254,29 @@ def searchbycategory(variable):
 
     return render_template_with_username("results.html", data=data)
 
+@app.route('/searchbysale', methods=['GET', 'POST'])
+def searchbysale():
+    response = requests.get(
+        f"https://api.bestbuy.com/v1/products(onSale=true)?apiKey={bestBuyKey}&format=json&pageSize=40"
+    )
+    data = response.json()["products"]
+    return render_template_with_username("results.html", data=data)
+
+@app.route('/randomitem/deal=<deal>', methods=['GET', 'POST'])
+def randomitem(deal):
+    if deal:
+        response = requests.get(
+            f"https://api.bestbuy.com/v1/products(onSale=true)?apiKey={bestBuyKey}&format=json&pageSize=100"
+        )
+    else:
+        response = request.get(
+            f"https://api.bestbuy.com/v1/products?apiKey={bestBuyKey}&format=json&pageSize=100"
+        )
+    
+    randnum = random.randint(0,99)
+    product = response.json()["products"][randnum]
+    return render_template_with_username("products.html", data=product)
+
 
 @app.route('/searchbysku/<variable>', methods=['GET', 'POST'])
 def searchbysku(variable):
@@ -265,7 +288,6 @@ def searchbysku(variable):
     product = response.json()["products"][0]
     return render_template_with_username("products.html", data=product)
     # return render_template("products.html", data=data)#, name=name)
-
 
 def getip():
     # if the addr is 127.0.0.1 then request for the ip
@@ -411,7 +433,7 @@ def checkout():
         # get the user's cart
         req = requests.post(
             " https://api.mailgun.net/v3/mg.betterbuy.cf/messages",
-            auth=("api", mg_api_key),
+            #auth=("api", mg_api_key),
             data={"from": "BetterBuy <orders@betterbuy.cf>",
                   "to": f"{name} <{email}>",
                   "subject": f"Order Confirmation for {name}",
