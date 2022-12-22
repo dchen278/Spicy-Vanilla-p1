@@ -111,6 +111,7 @@ SoftDev
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          <!--
           <li style="margin-left: 20px" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Holiday Deals
@@ -127,20 +128,23 @@ SoftDev
               </li>
             </ul>
           </li>
+        -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Top Deals</a>
+            <a class="nav-link" href="{{ url_for('searchbysale')}}">Top Deals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Deal of the Day</a>
+            <a class="nav-link" href="{{ url_for('randomitem', deal=true)}}">Random Deal</a>
           </li>
+        <!--
           <li class="nav-item">
             <a class="nav-link">Totaltech Membership</a>
           </li>
+        -->
           <li class="nav-item">
-            <a class="nav-link">Credit Cards</a>
+            <a class="nav-link" href="{{ url_for('searchbycategory', variable='cat09000') }}">Gift Cards</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Gift Ideas</a>
+            <a class="nav-link" href="https://www.zdnet.com/home-and-office/top-best-buy-tech-gift/" target="_blank" rel="noopener noreferrer">Gift Ideas</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -148,13 +152,13 @@ SoftDev
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#"> Health and Wellness </a>
+                <a class="dropdown-item" href="{{ url_for('searchbycategory', variable='pcmcat242800050021') }}" > Health and Wellness </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"> Donate to St. Jude </a>
+                <a class="dropdown-item" href="https://www.stjude.org/donate/thanks-and-giving.html" target="_blank" rel="noopener noreferrer"> Donate to St. Jude </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#"> Bestbuy Outlet </a>
+                <a class="dropdown-item" href="https://github.com/dchen278/Spicy-Vanilla_p1" target="_blank" rel="noopener noreferrer"> Check Out the GitHub </a>
               </li>
             </ul>
           </li>
