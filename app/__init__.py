@@ -281,7 +281,7 @@ def randomitem(deal):
 @app.route('/searchbysku/<variable>', methods=['GET', 'POST'])
 def searchbysku(variable):
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products(search={variable})?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=1"
+        f"https://api.bestbuy.com/v1/products(search={variable})?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,regularPrice,image,customerReviewCount,customerReviewAverage&pageSize=1"
     )
     print(response)
     # Searchs and takes first response
