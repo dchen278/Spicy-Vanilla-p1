@@ -246,7 +246,7 @@ def cart_display():
 def searchbycategory(variable):
     response = requests.get(
         # pageSize=[number] allows you to change how many products you want in the json file returned
-        f"https://api.bestbuy.com/v1/products(  .id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
+        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
     data = response.json()["products"]
     # products = data["products"]
     # print(data)
