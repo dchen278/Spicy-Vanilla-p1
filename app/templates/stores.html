@@ -41,30 +41,6 @@
               map.entities.push(pin);
             }
           });
-
-        // //Create random locations in the map bounds.
-        // var randomLocations = Microsoft.Maps.TestDataGenerator.getLocations(
-        //   5,
-        //   map.getBounds()
-        // );
-
-        // console.log(randomLocations);
-
-        // for (var i = 0; i < randomLocations.length; i++) {
-        //   var pin = new Microsoft.Maps.Pushpin(randomLocations[i]);
-
-        //   //Store some metadata with the pushpin.
-        //   pin.metadata = {
-        //     title: "Pin " + i,
-        //     description: "Discription for pin" + i,
-        //   };
-
-        //   //Add a click event handler to the pushpin.
-        //   Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
-
-        //   //Add pushpin to the map.
-        //   map.entities.push(pin);
-        // }
       }
 
       function pushpinClicked(e) {
@@ -88,31 +64,43 @@
     ></script>
   </head>
   <body>
-    <div class="container-fluid py-2">
-      <h2 class="font-weight-light">
-        Bootstrap 5 Horizontal Scrolling Cards with Flexbox
-      </h2>
-      <div class="flex-col flex-nowrap">
-        <div class="card card-body">asd</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
-        <div class="card card-body">Card</div>
+    <div class="container-fluid py-2 p-5">
+      <div class="row py-20">
+        <div class="col-sm-3">
+          <h3 class="font-weight-light">
+            BetterBuy Stores near {{ location }}
+          </h3>
+        </div>
+        <div class="col-sm-9">
+          <h3>
+            Shop for your favorite products at your nearest BetterBuy store.
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="flex-col flex-nowrap">
+            <div class="card card-body">asd</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+            <div class="card card-body">Card</div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div id="myMap" style="position: relative"></div>
+        </div>
       </div>
     </div>
-    <div
-      id="myMap"
-      style="position: relative; width: 600px; height: 400px"
-    ></div>
   </body>
 </html>
 {% endblock %}
