@@ -107,8 +107,10 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">{{ store.name }}</h5>
-              <p class="card-text">{{ store.address }}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <p class="card-text">{{ store.address }} {{ store.city }}, {{ store.region }} {{ store.postalCode }}</p>
+              <a href="
+              https://maps.google.com/?q={{ store.address }} {{ store.city }} {{ store.postalCode }}
+              " class="btn btn-primary">Check on maps</a>
             </div>
           </div>
           {% endfor %}

@@ -314,7 +314,7 @@ def stores():
 def get_stores_helper():
     ip_data = get_ip_data(getip())
     response = requests.get(
-        f"https://api.bestbuy.com/v1/stores(area({ip_data['lat']},{ip_data['lon']},10))?apiKey={bestBuyKey}&format=json&pageSize=10&show=storeId,storeType,name,city,distance,phone,region,postalCode,storeType,lat,lng"
+        f"https://api.bestbuy.com/v1/stores(area({ip_data['lat']},{ip_data['lon']},10))?apiKey={bestBuyKey}&format=json&pageSize=10&show=storeId,storeType,name,city,distance,phone,region,postalCode,storeType,lat,lng,address,city,region,postalCode"
     )
     data = response.json()["stores"]
     print(data)
