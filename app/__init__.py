@@ -281,12 +281,13 @@ def randomitem(deal):
 @app.route('/searchbysku/<variable>', methods=['GET', 'POST'])
 def searchbysku(variable):
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products(search={variable})?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,regularPrice,image,customerReviewCount,customerReviewAverage&pageSize=1"
+        f"https://api.bestbuy.com/v1/products(search={variable})?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,regularPrice,image,shortDescription,customerReviewCount,customerReviewAverage&pageSize=1"
     )
     print(response)
     # Searchs and takes first response
     product = response.json()["products"][0]
-    return render_template_with_username("products.html", data=product)
+    print(product)
+    return render_template_with_username("products.html", data=product, all=response.json())
     # return render_template("products.html", data=data)#, name=name)
 
 def getip():
@@ -436,7 +437,7 @@ def checkout():
         # handle checkout process and send email confirmation
         # get the user's cart
         req = requests.post(
-            " https://api.mailgun.net/v3/mg.betterbuy.ml/messages",
+            "https://api.mailgun.net/v3/mg.betterbuy.ml/messages",
             auth=("api", mailgunKey),
             data={"from": "BetterBuy <orders@betterbuy.ml>",
                   "to": f"{name} <{email}>",

@@ -250,3 +250,9 @@ matthewY -- 2022-12-22 04:10
 - Created orders.html and /orders to display all past orders
 - Added column for orderID in orders table and implemented insertion into orders table
 - Wiped database
+
+==============================================================
+davidC -- 2022-12-21 09:10
+- Refactored route for email confirmation
+- Added products page
+- Fixed db error
