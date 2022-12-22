@@ -23,7 +23,7 @@ dirname = os.path.dirname(__file__)
 bestBuyKey = open(os.path.join(dirname, "keys/key_bestbuy.txt")).read()
 radarKey = open(os.path.join(dirname, "keys/key_radar.txt")).read()
 mailChimpKey = open(os.path.join(dirname, "keys/key_mailchimp.txt")).read()
-#mg_api_key = open(os.path.join(dirname, "keys/key_mailgun.txt")).read()
+mailgunKey = open(os.path.join(dirname, "keys/key_mailgun.txt")).read()
 
 USER_DB_FILE = "users.db"
 CART_DB_FILE = "cart.db"
@@ -436,9 +436,9 @@ def checkout():
         # handle checkout process and send email confirmation
         # get the user's cart
         req = requests.post(
-            " https://api.mailgun.net/v3/mg.betterbuy.cf/messages",
-            #auth=("api", mg_api_key),
-            data={"from": "BetterBuy <orders@betterbuy.cf>",
+            " https://api.mailgun.net/v3/mg.betterbuy.ml/messages",
+            auth=("api", mailgunKey),
+            data={"from": "BetterBuy <orders@betterbuy.ml>",
                   "to": f"{name} <{email}>",
                   "subject": f"Order Confirmation for {name}",
                   "text": f"Thank you for your order, {name}! Your order will be shipped to {email}."
