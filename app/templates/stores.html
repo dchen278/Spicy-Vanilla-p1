@@ -1,106 +1,125 @@
 {% extends 'base.html' %} {% block main %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <script type="text/javascript">
-      var map, infobox;
 
-      function GetMap() {
-        map = new Microsoft.Maps.Map("#myMap", {});
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <script type="text/javascript">
+    var map, infobox;
 
-        //Create an infobox at the center of the map but don't show it.
-        infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
-          visible: false,
+    function GetMap() {
+      map = new Microsoft.Maps.Map("#myMap", {});
+
+      //Create an infobox at the center of the map but don't show it.
+      infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false,
+      });
+
+      //Assign the infobox to a map instance.
+      infobox.setMap(map);
+
+      // get store locations from /api/get_stores
+      // fetch("/api/get_stores")
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data);
+      //     for (var i = 0; i < data.length; i++) {
+      //       var pin = new Microsoft.Maps.Pushpin(
+      //         new Microsoft.Maps.Location(data[i].lat, data[i].lng)
+      //       );
+
+      //       //Store some metadata with the pushpin.
+      //       pin.metadata = {
+      //         title: data[i].name,
+      //         description: data[i].address,
+      //       };
+
+      //       //Add a click event handler to the pushpin.
+      //       Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+
+      //       //Add pushpin to the map.
+      //       map.entities.push(pin);
+      //     }
+      //   });
+
+      var stores = "{{ stores | safe }}"
+      stores = stores.replace(/'/g, '"');
+      stores = JSON.parse(stores);
+
+
+      for (var i = 0; i < stores.length; i++) {
+        console.log(stores[i]);
+        var pin = new Microsoft.Maps.Pushpin(
+          new Microsoft.Maps.Location(stores[i].lat, stores[i].lng)
+        );
+
+        //Store some metadata with the pushpin.
+        pin.metadata = {
+          title: stores[i].name,
+          description: stores[i].address,
+        };
+
+        //Add a click event handler to the pushpin.
+        Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
+
+        //Add pushpin to the map.
+        map.entities.push(pin);
+      }
+    }
+
+    function pushpinClicked(e) {
+      //Make sure the infobox has metadata to display.
+      if (e.target.metadata) {
+        //Set the infobox options with the metadata of the pushpin.
+        infobox.setOptions({
+          location: e.target.getLocation(),
+          title: e.target.metadata.title,
+          description: e.target.metadata.description,
+          visible: true,
         });
-
-        //Assign the infobox to a map instance.
-        infobox.setMap(map);
-
-        // get store locations from /api/get_stores
-        fetch("/api/get_stores")
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            for (var i = 0; i < data.length; i++) {
-              var pin = new Microsoft.Maps.Pushpin(
-                new Microsoft.Maps.Location(data[i].lat, data[i].lng)
-              );
-
-              //Store some metadata with the pushpin.
-              pin.metadata = {
-                title: data[i].name,
-                description: data[i].address,
-              };
-
-              //Add a click event handler to the pushpin.
-              Microsoft.Maps.Events.addHandler(pin, "click", pushpinClicked);
-
-              //Add pushpin to the map.
-              map.entities.push(pin);
-            }
-          });
       }
+    }
+  </script>
+  <script type="text/javascript"
+    src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ApoGTzsEZsZMP51WQe65HrnjXH7j1SjtRzbCW25F65Q25_5Xlb_tdZodeYlELesQ"
+    async defer></script>
+</head>
 
-      function pushpinClicked(e) {
-        //Make sure the infobox has metadata to display.
-        if (e.target.metadata) {
-          //Set the infobox options with the metadata of the pushpin.
-          infobox.setOptions({
-            location: e.target.getLocation(),
-            title: e.target.metadata.title,
-            description: e.target.metadata.description,
-            visible: true,
-          });
-        }
-      }
-    </script>
-    <script
-      type="text/javascript"
-      src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ApoGTzsEZsZMP51WQe65HrnjXH7j1SjtRzbCW25F65Q25_5Xlb_tdZodeYlELesQ"
-      async
-      defer
-    ></script>
-  </head>
-  <body>
-    <div class="container-fluid py-2 p-5">
-      <div class="row py-20">
-        <div class="col-sm-3">
-          <h3 class="font-weight-light">
-            BetterBuy Stores near {{ location }}
-          </h3>
-        </div>
-        <div class="col-sm-9">
-          <h3>
-            Shop for your favorite products at your nearest BetterBuy store.
-          </h3>
-        </div>
+<body>
+  <div class="container-fluid py-2 p-5">
+    <div class="row py-20">
+      <div class="col-sm-3">
+        <h3 class="font-weight-light">
+          BetterBuy Stores near {{ location }}
+        </h3>
       </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="flex-col flex-nowrap">
-            <div class="card card-body">asd</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-            <div class="card card-body">Card</div>
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div id="myMap" style="position: relative"></div>
-        </div>
+      <div class="col-sm-9">
+        <h3>
+          Shop for your favorite products at your nearest BetterBuy store.
+        </h3>
       </div>
     </div>
-  </body>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="flex-col flex-nowrap">
+          {% for store in stores %}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ store.name }}</h5>
+              <p class="card-text">{{ store.address }}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div id="myMap" style="position: relative"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
 {% endblock %}

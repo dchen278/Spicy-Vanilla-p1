@@ -309,7 +309,17 @@ def get_ip_data(ip):
 @app.route('/stores', methods=['GET', 'POST'])
 def stores():
     ip_data = get_ip_data(getip())
-    return render_template_with_username("stores.html", location=ip_data['zip'], stores=get_stores())
+    return render_template_with_username("stores.html", location=ip_data['zip'], stores=get_stores_helper())
+
+def get_stores_helper():
+    ip_data = get_ip_data(getip())
+    response = requests.get(
+        f"https://api.bestbuy.com/v1/stores(area({ip_data['lat']},{ip_data['lon']},10))?apiKey={bestBuyKey}&format=json&pageSize=10&show=storeId,storeType,name,city,distance,phone,region,postalCode,storeType,lat,lng"
+    )
+    data = response.json()["stores"]
+    print(data)
+    print(response.json())
+    return data
 
 
 @app.route('/api/get_stores', methods=['GET'])
