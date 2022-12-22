@@ -10,9 +10,8 @@ c.execute(
 # execute with relation to users table
 c.execute(
     "CREATE TABLE IF NOT EXISTS order_history(username TEXT PRIMARY KEY, cart, history)")
-#c.execute("CREATE TABLE IF NOT EXISTS cart(orderID INT PRIMARY KEY, name TEXT, sku TEXT, date TEXT, price TEXT, status TEXT)")
 
-c.execute("CREATE TABLE IF NOT EXISTS orders(username TEXT, productName TEXT, date TEXT, quantity INT, productSKU TEXT, productPrice REAL)")
+c.execute("CREATE TABLE IF NOT EXISTS orders(username TEXT, productName TEXT, date TEXT, quantity INT, productSKU TEXT, productPrice REAL, orderID INT PRIMARY KEY)")
 # TODO work this out later
 
 # c.execute("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, SKU TEXT, name TEXT, price REAL, description TEXT, image TEXT)")

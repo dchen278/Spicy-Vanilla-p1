@@ -243,3 +243,10 @@ jeremyK -- 2022-12-22 02:04
 - Added respective links/redirects to navbar
 - Redirected search result names to their respective product pages
 - Added product's regular price below product sale price
+
+==============================================================
+
+matthewY -- 2022-12-22 04:10
+- Created orders.html and /orders to display all past orders
+- Added column for orderID in orders table and implemented insertion into orders table
+- Wiped database

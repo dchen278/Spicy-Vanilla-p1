@@ -419,6 +419,9 @@ def add_product_to_cart(name, quantity, sku, price):
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
     if request.method == "POST" and 'username' in session:
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
         username = session['username']
         # get the user's cart
         email = request.form['email']
@@ -441,8 +444,9 @@ def checkout():
                   })
         print(req.text)
         order_num = random.randint(1000000000, 9999999999)
-        c.execute("insert into orders values(?, ?, ?, ?, ?, ?)",
-                  (username, name, date, quantity, sku, price))
+        users_c.execute("insert into orders values(?, ?, ?, ?, ?, ?, ?)",
+                  (username, name, date, quantity, sku, price, order_num))
+        users_db.commit()
         return render_template_with_username('checkout.html', order_number=order_num)
     else:
         username = session.get('username', None)
@@ -474,6 +478,23 @@ def checkout():
             totalPrice += product["salePrice"]
         print(data)
         return render_template_with_username('checkout.html', order=data, total=totalPrice, SKU=full_cart)
+
+@app.route("/orders", methods=["GET", "POST"])
+def show_orders():
+    search_dict = {}
+    
+    if request.method == "POST":
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+        users_c.execute("SELECT orderID FROM orders WHERE username=?", session['username'])
+        order_list = users_c.fetchall()
+
+        all_orders = order_list
+
+        for current in order_list:
+            users_c.execute("SELECT * FROM orders WHERE orderID=?", current)
+
+    return render_template_with_username('orders.html')
 
 
 if __name__ == "__main__":  # false if this file imported as module
