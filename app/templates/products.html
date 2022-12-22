@@ -20,7 +20,11 @@
                     </span>
                 </div>
                 <p class="lead">
+                    {% if all %}
                     {{ all.shortDescription }}
+                    {% else %}
+                    No description available.
+                    {% endif %}
                 </p>
                 <div class="d-flex">
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"

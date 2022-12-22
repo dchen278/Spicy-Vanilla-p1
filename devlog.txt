@@ -256,3 +256,4 @@ davidC -- 2022-12-21 09:10
 - Refactored route for email confirmation
 - Added products page
 - Fixed db error
+- Made search results more relevant (ex ipad should return ipads and not applecare plans)

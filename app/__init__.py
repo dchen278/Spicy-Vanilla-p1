@@ -151,7 +151,7 @@ def search_page():
     else:
         page = int(page)
     response = requests.get(
-        f"https://api.bestbuy.com/v1/products((search={query}))?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page={str(page)}"
+        f"https://api.bestbuy.com/v1/products((longDescription={query}*))?apiKey={bestBuyKey}&format=json&show=sku,name,salePrice,image,customerReviewCount,customerReviewAverage&pageSize=20&page={str(page)}"
     )
     if response.status_code != 200:
         return app.redirect("/")
@@ -246,7 +246,7 @@ def cart_display():
 def searchbycategory(variable):
     response = requests.get(
         # pageSize=[number] allows you to change how many products you want in the json file returned
-        f"https://api.bestbuy.com/v1/products(categoryPath.id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
+        f"https://api.bestbuy.com/v1/products(  .id={variable})?apiKey={bestBuyKey}&format=json&pageSize=40")
     data = response.json()["products"]
     # products = data["products"]
     # print(data)
