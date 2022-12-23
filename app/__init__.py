@@ -537,6 +537,29 @@ def show_orders():
     return app.redirect(app.url_for('login'))
 
 
+@app.route("/order/<variable>", methods=["GET", "POST"])
+def order_details(variable):
+    if 'username' in session:
+        users_db = sqlite3.connect(USER_DB_FILE)
+        users_c = users_db.cursor()
+
+        username = ""
+        username = session['username']
+
+        users_c.execute(
+            "SELECT * FROM orders WHERE orderID=?", (variable,))
+        order_list = users_c.fetchall()[0]
+        # fetch detials from bestbuy api
+        print(order_list)
+        response = requests.get(
+            f"https://api.bestbuy.com/v1/products(sku in ({order_list[4]}))?apiKey={bestBuyKey}&format=json"
+        )
+        # print(response.json())
+
+        return render_template_with_username('details.html', data=order_list, products=response.json()["products"])
+    else:
+        app.redirect(app.url_for('login'))
+    return app.redirect(app.url_for('login'))
 
 
 '''

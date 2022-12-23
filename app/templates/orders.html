@@ -30,7 +30,13 @@
             <th scope="row">{{ loop.index }}</th>
             <td>{{ order[0] }}</td>
             <td>
-              <a class="btn btn-success" href="#">View Order Details</a>
+              <a
+                class="btn btn-success"
+                href="
+                    /order/{{order[0]}}
+              "
+                >View Order Details</a
+              >
             </td>
           </tr>
           {% endfor %}
