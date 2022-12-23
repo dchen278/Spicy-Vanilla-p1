@@ -272,3 +272,4 @@ matthewY -- 2022-12-23 04:46
 davidC -- 2022-12-23 12:00
 - Updated orders details page
 - Passed in order number to redirect after checkout
+- New orders details page
