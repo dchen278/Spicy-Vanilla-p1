@@ -459,7 +459,11 @@ def checkout():
         users_c.execute("insert into orders values(?, ?, ?, ?, ?, ?, ?)",
                   (username, name, date, quantity, sku, price, order_num))
         users_db.commit()
-        return render_template_with_username('checkout.html', order_number=order_num)
+
+        users_c.execute("UPDATE order_history SET cart='' WHERE username=?", (username,))
+        users_db.commit()
+
+        return app.redirect(app.url_for('show_orders'))
     else:
         username = session.get('username', None)
         if username is None:
@@ -493,21 +497,60 @@ def checkout():
 
 @app.route("/orders", methods=["GET", "POST"])
 def show_orders():
-    search_dict = {}
     
-    if request.method == "POST":
+    if 'username' in session:
         users_db = sqlite3.connect(USER_DB_FILE)
         users_c = users_db.cursor()
-        users_c.execute("SELECT orderID FROM orders WHERE username=?", session['username'])
+
+        username = ""
+        username = session['username']
+
+        users_c.execute("SELECT orderID FROM orders WHERE username=?", (username,))
         order_list = users_c.fetchall()
 
-        all_orders = order_list
+        #print(order_list[0])
+
+        '''
+        all_orders = [] #this is a nested list of all orders made by the current user, and the details for each
+                        #currently not in use because nested list would be hard to feed to template
 
         for current in order_list:
-            users_c.execute("SELECT * FROM orders WHERE orderID=?", current)
+            temp = current[0]
+            users_c.execute("SELECT * FROM orders WHERE orderID=?", (temp,))
+            search_dict = users_c.fetchall()
+            #print(search_dict)
+            all_orders.append(search_dict)
+        
+        print(all_orders)
+        '''
 
-    return render_template_with_username('orders.html')
+        return render_template_with_username('orders.html', data = order_list)
 
+    return app.redirect(app.url_for('login'))
+
+'''
+@app.route('/search_order/<variable>', methods=['GET', 'POST'])
+def search_order(variable):
+    ID = variable
+    users_db = sqlite3.connect(USER_DB_FILE)
+    users_c = users_db.cursor()
+    users_c.execute("SELECT * FROM orders WHERE orderID=?", (ID,))
+    dump = users_c.fetchall()
+    #name = users_c.fetchone()[1]
+    date = dump[2]
+    quantity = users_c.fetchone()[3]
+    SKU = users_c.fetchone()[4]
+    price = users_c.fetchone()[5]
+
+    response = requests.get(
+        f"https://api.bestbuy.com/v1/products(sku in ({SKU}))?apiKey={bestBuyKey}&format=json"
+    )
+    if response.status_code != 200:
+        return render_template_with_username('cart.html', error='You have no items in your cart.', data=[])
+    data = response.json()["products"]
+
+    return render_template_with_username("order_search.html", ID=ID, name=name, date=date, data=data, price=price)
+'''
 
 if __name__ == "__main__":  # false if this file imported as module
     # enable debugging, auto-restarting of server when this file is modified

@@ -259,3 +259,12 @@ davidC -- 2022-12-21 09:10
 - Made search results more relevant (ex ipad should return ipads and not applecare plans)
 - Fixed stores page; allowed for JSON to be passed in to the script
 - Display preexisting query in search bar
+
+==============================================================
+
+matthewY -- 2022-12-23 04:46
+- Got orders page working, but doesn't display details
+- Completing an order now wipes the cart
+- Wiped database
+
+==============================================================
