@@ -1,36 +1,53 @@
-{% extends 'base.html' %} {% block main %}
-
-{% if data %}
-{% for order in data %}
-<div class="row bg-white border rounded">
-    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
-            ></div>
-    <div class="col-md-6 mt-1">
-        <h5>
-            <a>Order {{ order[0] }}</a>
-        </h5>
-    </div>
-    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-        <div class="d-flex flex-column mt-4">
-            <a>
-                <button class="btn btn-primary btn-sm"
-                    type="button">Details
-                </button>
-            </a>
-            </div>
-    </div>
-</div>
-{% endfor %}
-
-{% else %}
+{% extends 'base.html' %} {% block main %} {% if data %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+  <div class="row">
+    {% if request.args.get('order_num') %}
+    <h1>
+      Thank you for your order! Your order number is {{
+      request.args.get('order_num') }}.
+    </h1>
+    <h4>
+      You will receive an email confirmation shortly with your order details.
+    </h4>
+    <hr />
+    {% endif %}
+    <div class="col-12">
+      <h1>Orders</h1>
+    </div>
+
+    <div class="container p-10">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Number</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in data %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ order[0] }}</td>
+            <td>
+              <a class="btn btn-success" href="#">View Order Details</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
             <h1>Orders</h1>
             <p>You have not made any orders.</p>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-{% endif %}
 
-{% endblock %}
+    {% endif %} {% endblock %}
+  </div>
+</div>

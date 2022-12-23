@@ -254,6 +254,7 @@ def searchbycategory(variable):
 
     return render_template_with_username("results.html", data=data)
 
+
 @app.route('/searchbysale', methods=['GET', 'POST'])
 def searchbysale():
     response = requests.get(
@@ -261,6 +262,7 @@ def searchbysale():
     )
     data = response.json()["products"]
     return render_template_with_username("results.html", data=data)
+
 
 @app.route('/randomitem/deal=<deal>', methods=['GET', 'POST'])
 def randomitem(deal):
@@ -272,8 +274,8 @@ def randomitem(deal):
         response = request.get(
             f"https://api.bestbuy.com/v1/products?apiKey={bestBuyKey}&format=json&pageSize=100"
         )
-    
-    randnum = random.randint(0,99)
+
+    randnum = random.randint(0, 99)
     product = response.json()["products"][randnum]
     return render_template_with_username("products.html", data=product)
 
@@ -289,6 +291,7 @@ def searchbysku(variable):
     print(product)
     return render_template_with_username("products.html", data=product, all=response.json())
     # return render_template("products.html", data=data)#, name=name)
+
 
 def getip():
     # if the addr is 127.0.0.1 then request for the ip
@@ -310,6 +313,7 @@ def get_ip_data(ip):
 def stores():
     ip_data = get_ip_data(getip())
     return render_template_with_username("stores.html", location=ip_data['zip'], stores=get_stores_helper())
+
 
 def get_stores_helper():
     ip_data = get_ip_data(getip())
@@ -457,13 +461,14 @@ def checkout():
         print(req.text)
         order_num = random.randint(1000000000, 9999999999)
         users_c.execute("insert into orders values(?, ?, ?, ?, ?, ?, ?)",
-                  (username, name, date, quantity, sku, price, order_num))
+                        (username, name, date, quantity, sku, price, order_num))
         users_db.commit()
 
-        users_c.execute("UPDATE order_history SET cart='' WHERE username=?", (username,))
+        users_c.execute(
+            "UPDATE order_history SET cart='' WHERE username=?", (username,))
         users_db.commit()
 
-        return app.redirect(app.url_for('show_orders'))
+        return app.redirect(app.url_for('show_orders') + f"?order_num={order_num}")
     else:
         username = session.get('username', None)
         if username is None:
@@ -495,9 +500,10 @@ def checkout():
         print(data)
         return render_template_with_username('checkout.html', order=data, total=totalPrice, SKU=full_cart)
 
+
 @app.route("/orders", methods=["GET", "POST"])
 def show_orders():
-    
+
     if 'username' in session:
         users_db = sqlite3.connect(USER_DB_FILE)
         users_c = users_db.cursor()
@@ -505,10 +511,11 @@ def show_orders():
         username = ""
         username = session['username']
 
-        users_c.execute("SELECT orderID FROM orders WHERE username=?", (username,))
+        users_c.execute(
+            "SELECT orderID FROM orders WHERE username=?", (username,))
         order_list = users_c.fetchall()
 
-        #print(order_list[0])
+        print(order_list)
 
         '''
         all_orders = [] #this is a nested list of all orders made by the current user, and the details for each
@@ -524,9 +531,13 @@ def show_orders():
         print(all_orders)
         '''
 
-        return render_template_with_username('orders.html', data = order_list)
-
+        return render_template_with_username('orders.html', data=order_list)
+    else:
+        app.redirect(app.url_for('login'))
     return app.redirect(app.url_for('login'))
+
+
+
 
 '''
 @app.route('/search_order/<variable>', methods=['GET', 'POST'])
