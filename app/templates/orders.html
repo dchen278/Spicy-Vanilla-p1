@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block main %}
+
+{% if data %}
+{% for order in data %}
+<div class="row bg-white border rounded">
+    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"
+            ></div>
+    <div class="col-md-6 mt-1">
+        <h5>
+            <a>Order {{ order[0] }}</a>
+        </h5>
+    </div>
+    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+        <div class="d-flex flex-column mt-4">
+            <a>
+                <button class="btn btn-primary btn-sm"
+                    type="button">Details
+                </button>
+            </a>
+            </div>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Orders</h1>
+            <p>You have not made any orders.</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
